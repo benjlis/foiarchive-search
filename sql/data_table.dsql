@@ -1,0 +1,5 @@
+select authored, corpus, classification, 
+       title, doc_id, doc_url, body,
+       pg_cnt, word_cnt
+    from {table_name} {where_clause}
+order by authored, corpus, title;

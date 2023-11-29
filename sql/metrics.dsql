@@ -1,0 +1,2 @@
+select coalesce(sum(pg_cnt), 0) pagecnt, count(doc_id) doccnt
+    from {table_name} {where_clause};

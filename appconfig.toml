@@ -1,0 +1,12 @@
+gui_title = "FOIArchive Search"
+tab_title = "HL: FOIArchive Search"
+favicon = "static/hl-logo-favicon.png"
+help_action = "mailto:info@history-lab.org?subject=History Lab Help Request"
+bug_action= "mailto:info@history-lab.org?subject=History Lab Bug Report"
+about_body = """
+Built by Columbia University's [History Lab](http://history-lab.org) with generous support 
+from the NEH.
+"""
+#
+table_name = "mosaic.docs_oct73"
+max_rows = 1050         # results must be <= to display detail records
