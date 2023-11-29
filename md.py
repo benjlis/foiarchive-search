@@ -24,11 +24,9 @@ corpora_lovs = db.get_lov("corpora", "corpus")
 MIN_AUTHORED = datetime.date(1973, 10, 1)
 MAX_AUTHORED = datetime.date(1973, 11, 1)
 # display widgets
-search_str = st.text_input(label="\U0001F50E  \t"+
-                                 "Search the Mosaic Project Document Set",
+search_str = st.text_input(label=config['search_str_label'],
                            label_visibility="visible",
-                           help="Use double quotes for phrases, OR for \
-                            logical or, and - for logical not.")
+                           help=config['search_str_help'])
 with st.expander("Additional search options"):
     col1, col2, col3 = st.columns(3)
     corpora = col1.multiselect("Corpus", corpora_lovs)

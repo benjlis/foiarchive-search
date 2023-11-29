@@ -1,6 +1,10 @@
 gui_title = "FOIArchive Search"
 tab_title = "HL: FOIArchive Search"
 favicon = "static/hl-logo-favicon.png"
+search_str_label="\U0001F50E  \tSearch the FOIArchive"
+search_str_help="""
+Use double quotes for phrases, OR for logical or, and - for logical not.
+"""
 help_action = "mailto:info@history-lab.org?subject=History Lab Help Request"
 bug_action= "mailto:info@history-lab.org?subject=History Lab Bug Report"
 about_body = """
