@@ -1,3 +1,3 @@
 select corpus
-    from mosaic.corpora
+    from foiarchive.corpora
     order by corpus;

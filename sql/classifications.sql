@@ -1,3 +1,3 @@
 select classification, sensitivity_level
-   from mosaic.classifications
+   from foiarchive.classifications
    order by sensitivity_level;
