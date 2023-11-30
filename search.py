@@ -46,7 +46,7 @@ sg.add_predicate(predicates, sg.compare_predicate('authored', ' >= ',
                                                   start_date))
 sg.add_predicate(predicates, sg.compare_predicate('authored', ' <= ',
                                                   end_date))
-sg.add_predicate(predicates, sg.search_predicate('fts', search_str))  
+sg.add_predicate(predicates, sg.search_predicate('full_text', search_str))  
 where_clause = sg.where_clause(predicates)
 # build queries
 metrics_sql = sg.query('metrics', config["table_name"], where_clause)
