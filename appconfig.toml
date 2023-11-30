@@ -12,5 +12,5 @@ Built by Columbia University's [History Lab](http://history-lab.org) with genero
 from the NEH.
 """
 #
-table_name = "mosaic.docs_oct73"
+table_name = "foiarchive.docs"
 max_rows = 1050         # results must be <= to display detail records
