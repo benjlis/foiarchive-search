@@ -14,3 +14,6 @@ from the NEH.
 #
 table_name = "foiarchive.docs"
 max_rows = 1050         # results must be <= to display detail records
+# not used currently but should be
+# schema =
+# tsvector_col =
