@@ -1,4 +1,4 @@
-select to_char(authored, 'YYYY-MM-DD') "Date", corpus "Corpus", count(doc_id) "Documents"
+select to_char(authored, 'YYYY-MM') "Date", corpus "Corpus", count(doc_id) "Documents"
     from {table_name} {where_clause}
-    group by to_char(authored, 'YYYY-MM-DD'), corpus 
-    order by to_char(authored, 'YYYY-MM-DD'), corpus;
+    group by to_char(authored, 'YYYY-MM'), corpus 
+    order by to_char(authored, 'YYYY-MM'), corpus;
