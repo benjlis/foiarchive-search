@@ -57,7 +57,7 @@ data_table_sql = sg.query('data_table', config["table_name"], where_clause)
 metrics_df = db.execute(metrics_sql)
 doc_cnt = metrics_df.iloc[0]['doccnt']
 # display WHERE clause and counts
-st.subheader(where_clause.replace("fts @@ websearch_to_tsquery('english',", 
+st.subheader(where_clause.replace("full_text @@ websearch_to_tsquery('english',", 
                                   "search("))
 st.metric(label="Documents Found", value=f"{doc_cnt:,}", delta=None)
 # if there are results, execute bar_chart and possibly other queries 
