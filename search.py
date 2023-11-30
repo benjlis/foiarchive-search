@@ -21,8 +21,8 @@ st.title(config['gui_title'])
 # get values to populate values and ranges
 classification_lovs = db.get_lov("classifications", "classification")
 corpora_lovs = db.get_lov("corpora", "corpus")
-MIN_AUTHORED = datetime.date(1973, 10, 1)
-MAX_AUTHORED = datetime.date(1973, 11, 1)
+MIN_AUTHORED = datetime.date(1861, 5, 1)
+MAX_AUTHORED = datetime.date(2013, 7, 8)
 # display widgets
 search_str = st.text_input(label=config['search_str_label'],
                            label_visibility="visible",
