@@ -17,6 +17,7 @@ import column_configs as cf
 import db
 
 st.title(config['gui_title'])
+
 # GUI search widgets
 # get values to populate values and ranges
 classification_lovs = db.get_lov("classifications", "classification")
@@ -48,12 +49,9 @@ sg.add_predicate(predicates, sg.compare_predicate('authored', ' <= ',
                                                   end_date))
 sg.add_predicate(predicates, sg.search_predicate('full_text', search_str))  
 where_clause = sg.where_clause(predicates)
-# build queries
-metrics_sql = sg.query('metrics', config["table_name"], where_clause)
-bar_chart_sql = sg.query('bar_chart', config["table_name"], where_clause)
-data_table_sql = sg.query('data_table', config["table_name"], where_clause)
 
-# counts qry execution
+# metrics
+metrics_sql = sg.query('metrics', config["table_name"], where_clause)
 metrics_df = db.execute(metrics_sql)
 doc_cnt = metrics_df.iloc[0]['doc_cnt']
 start_date = metrics_df.iloc[0]['start_date']
@@ -69,6 +67,7 @@ st.subheader(where_clause.replace("full_text @@ websearch_to_tsquery('english',"
 st.metric(label="Documents Found", value=f"{doc_cnt:,}", delta=None)
 # if there are results, execute bar_chart and possibly other queries 
 if doc_cnt:
+    bar_chart_sql = sg.query('bar_chart', config["table_name"], where_clause)
     bar_chart_df = db.execute(bar_chart_sql)
     st.bar_chart(data=bar_chart_df, x="Date", y="Documents", color="Corpus",
                  use_container_width=True)    
@@ -76,6 +75,8 @@ if doc_cnt:
         st.write(f"**Note:** Filter to {config['max_rows']} or \
                  less documents to see full details")
     else:
+        data_table_sql = sg.query('data_table', config["table_name"], 
+                                  where_clause)        
         data_table_df = db.execute(data_table_sql)
         st.dataframe(data=data_table_df, hide_index=True, 
                      use_container_width=True, 
