@@ -58,13 +58,17 @@ MAX_BARS = 90
 def aggdate_expr(column_name, metrics):
     if metrics['day_cnt'] <= MAX_BARS:
         expr = f"to_char({column_name}, 'YYYY-MM-DD')"
+        date_type = 'Date'
     elif metrics['mon_cnt'] <= MAX_BARS:
         expr = f"to_char({column_name}, 'YYYY-MM')"
+        date_type = 'Month'
     elif metrics['yr_cnt'] <= MAX_BARS:
         expr = f"to_char({column_name}, 'YYYY')"
+        date_type = 'Year'
     else:
         expr = f"to_char(date_trunc('decade', {column_name}), 'YYYY')"
-    return expr
+        date_type = 'Decade'
+    return expr, date_type
 
 def aggquery(template_name, table_name, where_clause, agg_column):
     template = load_dynamic(template_name)
