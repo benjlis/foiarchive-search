@@ -55,7 +55,14 @@ data_table_sql = sg.query('data_table', config["table_name"], where_clause)
 
 # counts qry execution
 metrics_df = db.execute(metrics_sql)
-doc_cnt = metrics_df.iloc[0]['doccnt']
+doc_cnt = metrics_df.iloc[0]['doc_cnt']
+start_date = metrics_df.iloc[0]['start_date']
+end_date = metrics_df.iloc[0]['end_date']
+day_cnt = metrics_df.iloc[0]['day_cnt']
+mon_cnt = metrics_df.iloc[0]['mon_cnt']
+yr_cnt = metrics_df.iloc[0]['yr_cnt']
+st.write(f"{doc_cnt=}, {start_date=}, {end_date=}, {day_cnt=}, {mon_cnt=}, {yr_cnt=}")
+
 # display WHERE clause and counts
 st.subheader(where_clause.replace("full_text @@ websearch_to_tsquery('english',", 
                                   "search("))
