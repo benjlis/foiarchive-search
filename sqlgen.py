@@ -53,3 +53,15 @@ def where_clause(predicates):
 def query(template_name, table_name, where_clause):
     template = load_dynamic(template_name)
     return template.format(table_name=table_name, where_clause=where_clause)
+
+MAX_BARS = 90
+def aggdate_expr(column_name, metrics):
+    if metrics['day_cnt'] <= MAX_BARS:
+        expr = column_name + "::date"
+    elif metrics['mon_cnt'] <= MAX_BARS:
+        expr = "date_trunc('month', " + column_name + ")"
+    elif metrics['yr_cnt'] <= MAX_BARS:
+        expr = "date_trunc('year', " + column_name + ")"
+    else:
+        expr = "date_trunc('decade', " + column_name + ")"
+    return expr
