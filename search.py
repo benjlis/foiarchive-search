@@ -61,11 +61,12 @@ st.subheader(where_clause.replace("full_text @@ websearch_to_tsquery('english',"
 st.metric(label="Documents Found", value=f"{metrics['doc_cnt']:,}", delta=None)
 # if there are results, execute bar_chart and possibly other queries 
 if metrics['doc_cnt']:
-    aggdate = sg.aggdate_expr('authored', metrics)
+    aggdate, x_axis_label = sg.aggdate_expr('authored', metrics)
     bar_chart_sql = sg.aggquery('bar_chart', config["table_name"], 
-                             where_clause, aggdate)
+                                 where_clause, aggdate)
     bar_chart_df = db.execute(bar_chart_sql)
-    st.bar_chart(data=bar_chart_df, x="Date", y="Documents", color="Corpus",
+    bar_chart_df.rename(columns={'Date': x_axis_label}, inplace=True)
+    st.bar_chart(data=bar_chart_df, x=x_axis_label, y="Documents", color="Corpus",
                  use_container_width=True)    
     if metrics['doc_cnt'] > config["max_rows"]:
         st.write(f"**Note:** Filter to {config['max_rows']} or \
