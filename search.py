@@ -54,10 +54,6 @@ where_clause = sg.where_clause(predicates)
 metrics_sql = sg.query('metrics', config["table_name"], where_clause)
 metrics_df = db.execute(metrics_sql)
 metrics = metrics_df.iloc[0] 
-aggdate = sg.aggdate_expr('authored', metrics)
-st.write(f"{metrics['doc_cnt']=}, {metrics['start_date']=}, \
-           {metrics['end_date']=}, {metrics['day_cnt']=}, \
-           {metrics['mon_cnt']=}, {metrics['yr_cnt']=}, {aggdate}")
 
 # display WHERE clause and counts
 st.subheader(where_clause.replace("full_text @@ websearch_to_tsquery('english',", 
@@ -65,7 +61,9 @@ st.subheader(where_clause.replace("full_text @@ websearch_to_tsquery('english',"
 st.metric(label="Documents Found", value=f"{metrics['doc_cnt']:,}", delta=None)
 # if there are results, execute bar_chart and possibly other queries 
 if metrics['doc_cnt']:
-    bar_chart_sql = sg.query('bar_chart', config["table_name"], where_clause)
+    aggdate = sg.aggdate_expr('authored', metrics)
+    bar_chart_sql = sg.aggquery('bar_chart', config["table_name"], 
+                             where_clause, aggdate)
     bar_chart_df = db.execute(bar_chart_sql)
     st.bar_chart(data=bar_chart_df, x="Date", y="Documents", color="Corpus",
                  use_container_width=True)    
