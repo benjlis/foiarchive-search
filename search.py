@@ -54,15 +54,10 @@ where_clause = sg.where_clause(predicates)
 metrics_sql = sg.query('metrics', config["table_name"], where_clause)
 metrics_df = db.execute(metrics_sql)
 metrics = metrics_df.iloc[0] 
-# doc_cnt = metrics_df.iloc[0]['doc_cnt']
-# if day_cnt <= 90:
-#    dateagg_expr = "authored::date"
-# elif mon_cnt <= 90
-#     dateagg_expr = 
-# elif year
+aggdate = sg.aggdate_expr('authored', metrics)
 st.write(f"{metrics['doc_cnt']=}, {metrics['start_date']=}, \
            {metrics['end_date']=}, {metrics['day_cnt']=}, \
-           {metrics['mon_cnt']=}, {metrics['yr_cnt']=}")
+           {metrics['mon_cnt']=}, {metrics['yr_cnt']=}, {aggdate}")
 
 # display WHERE clause and counts
 st.subheader(where_clause.replace("full_text @@ websearch_to_tsquery('english',", 
