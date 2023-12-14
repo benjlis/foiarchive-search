@@ -53,25 +53,28 @@ where_clause = sg.where_clause(predicates)
 # metrics
 metrics_sql = sg.query('metrics', config["table_name"], where_clause)
 metrics_df = db.execute(metrics_sql)
-doc_cnt = metrics_df.iloc[0]['doc_cnt']
-start_date = metrics_df.iloc[0]['start_date']
-end_date = metrics_df.iloc[0]['end_date']
-day_cnt = metrics_df.iloc[0]['day_cnt']
-mon_cnt = metrics_df.iloc[0]['mon_cnt']
-yr_cnt = metrics_df.iloc[0]['yr_cnt']
-st.write(f"{doc_cnt=}, {start_date=}, {end_date=}, {day_cnt=}, {mon_cnt=}, {yr_cnt=}")
+metrics = metrics_df.iloc[0] 
+# doc_cnt = metrics_df.iloc[0]['doc_cnt']
+# if day_cnt <= 90:
+#    dateagg_expr = "authored::date"
+# elif mon_cnt <= 90
+#     dateagg_expr = 
+# elif year
+st.write(f"{metrics['doc_cnt']=}, {metrics['start_date']=}, \
+           {metrics['end_date']=}, {metrics['day_cnt']=}, \
+           {metrics['mon_cnt']=}, {metrics['yr_cnt']=}")
 
 # display WHERE clause and counts
 st.subheader(where_clause.replace("full_text @@ websearch_to_tsquery('english',", 
                                   "search("))
-st.metric(label="Documents Found", value=f"{doc_cnt:,}", delta=None)
+st.metric(label="Documents Found", value=f"{metrics['doc_cnt']:,}", delta=None)
 # if there are results, execute bar_chart and possibly other queries 
-if doc_cnt:
+if metrics['doc_cnt']:
     bar_chart_sql = sg.query('bar_chart', config["table_name"], where_clause)
     bar_chart_df = db.execute(bar_chart_sql)
     st.bar_chart(data=bar_chart_df, x="Date", y="Documents", color="Corpus",
                  use_container_width=True)    
-    if doc_cnt > config["max_rows"]:
+    if metrics['doc_cnt'] > config["max_rows"]:
         st.write(f"**Note:** Filter to {config['max_rows']} or \
                  less documents to see full details")
     else:
