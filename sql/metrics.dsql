@@ -1,2 +1,6 @@
-select count(doc_id) doccnt
+select count(doc_id) doc_cnt, 
+       min(authored::date) start_date, max(authored::date) end_date, 
+       count(distinct authored::date) day_cnt, 
+       count(distinct date_trunc('month', authored)) mon_cnt, 
+       count(distinct date_trunc('year', authored)) yr_cnt
     from {table_name} {where_clause};
