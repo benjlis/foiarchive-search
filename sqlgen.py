@@ -37,9 +37,27 @@ def search_predicate(colname, searchstr):
         searchstr = searchstr.replace("'", "''")
         return f"{colname} @@ websearch_to_tsquery('english', '{searchstr}')"
 
+def daterange_predicate(colname, start_date, end_date, null_date, 
+                        min_date, max_date):
+    if start_date == min_date and end_date == max_date and null_date:
+        return None # no predicate needed default state
+    else:
+        daterange = f"({compare_predicate(colname, ' >= ', start_date)} and "
+        daterange += f"{compare_predicate(colname, ' <= ', end_date)}"
+        if null_date:
+            daterange += f" or {colname} is null)"
+        else:
+            daterange += f")"
+    return daterange 
+
+    sg.compare_predicate('authored', ' >= ', start_date)
+
+
 def add_predicate(predicates, text):
     if text:
         predicates.append(text)
+
+
 
 def where_clause(predicates):
     if predicates:
