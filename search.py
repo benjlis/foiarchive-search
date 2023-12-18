@@ -28,24 +28,29 @@ MAX_AUTHORED = datetime.date(2013, 7, 8)
 search_str = st.text_input(label=config['search_str_label'],
                            label_visibility="visible",
                            help=config['search_str_help'])
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 corpora = col1.multiselect("Corpus", corpora_lovs)
 classifications = col2.multiselect("Original Classification:", 
                                    classification_lovs)
-dates = col3.date_input("Date Range", value=(), min_value=MIN_AUTHORED,
-                        max_value=MAX_AUTHORED)    
+start_date = col3.date_input("Start Date", value=MIN_AUTHORED,
+                             min_value=MIN_AUTHORED,
+                             max_value=MAX_AUTHORED)
+end_date = col4.date_input("End Date", value=MAX_AUTHORED, 
+                             min_value=MIN_AUTHORED,
+                             max_value=MAX_AUTHORED)
+null_date = col3.checkbox("Include documents without a date", value=True)    
     
+
 # Dynamic SQL generation
 # build where clause
 predicates = []
 sg.add_predicate(predicates, sg.lov_predicate('corpus', corpora))
 sg.add_predicate(predicates, sg.lov_predicate('classification', 
                                               classifications))
-start_date, end_date = sg.convert_daterange(dates, "%Y/%m/%d")
-sg.add_predicate(predicates, sg.compare_predicate('authored', ' >= ',
-                                                  start_date))
-sg.add_predicate(predicates, sg.compare_predicate('authored', ' <= ',
-                                                  end_date))
+sg.add_predicate(predicates, 
+                 sg.daterange_predicate('authored',
+                                        start_date, end_date, null_date, 
+                                        MIN_AUTHORED, MAX_AUTHORED))
 sg.add_predicate(predicates, sg.search_predicate('full_text', search_str))  
 where_clause = sg.where_clause(predicates)
 
