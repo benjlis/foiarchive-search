@@ -28,13 +28,12 @@ MAX_AUTHORED = datetime.date(2013, 7, 8)
 search_str = st.text_input(label=config['search_str_label'],
                            label_visibility="visible",
                            help=config['search_str_help'])
-with st.expander("Additional search options"):
-    col1, col2, col3 = st.columns(3)
-    corpora = col1.multiselect("Corpus", corpora_lovs)
-    classifications = col2.multiselect("Original Classification:", 
-                                       classification_lovs)
-    dates = col3.date_input("Date Range", value=(), min_value=MIN_AUTHORED,
-                            max_value=MAX_AUTHORED)    
+col1, col2, col3 = st.columns(3)
+corpora = col1.multiselect("Corpus", corpora_lovs)
+classifications = col2.multiselect("Original Classification:", 
+                                   classification_lovs)
+dates = col3.date_input("Date Range", value=(), min_value=MIN_AUTHORED,
+                        max_value=MAX_AUTHORED)    
     
 # Dynamic SQL generation
 # build where clause
