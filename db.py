@@ -11,6 +11,8 @@ def load_execute(filename, ttl):
     return conn.query(load(filename), ttl=ttl)
 
 def execute(query):
+    print('query:')
+    print(query)
     return conn.query(query)
 
 @st.cache_data
