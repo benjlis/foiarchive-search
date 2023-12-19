@@ -15,6 +15,7 @@ st.set_page_config(page_title=config["tab_title"],
                                         f"{config['about_body']}"})
 import column_configs as cf
 import db
+import footer
 
 st.title(config['gui_title'])
 
@@ -82,4 +83,6 @@ if metrics['doc_cnt']:
         st.dataframe(data=data_table_df, hide_index=True, 
                      use_container_width=True, 
                      column_config=cf.COLUMN_CONFIGS)
-        st.caption("Double click cell to activate")            
+        st.caption("Double click cell to activate")
+
+footer.display()
