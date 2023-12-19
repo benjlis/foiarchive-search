@@ -1,6 +1,7 @@
 import streamlit as st
 
 def display():
+    st.divider()
     st.subheader("About")
     st.markdown("Columbia University's [History Lab](http://history-lab.org) \
                 created, maintains, and enhances the FOIArchive and its associated tools.")
