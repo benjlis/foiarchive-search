@@ -29,16 +29,12 @@ MAX_AUTHORED = datetime.date(2013, 7, 8)
 search_str = st.text_input(label=config['search_str_label'],
                            label_visibility="visible",
                            help=config['search_str_help'])
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3 = st.columns(3)
 corpora = col1.multiselect("Corpus", corpora_lovs)
 classifications = col2.multiselect("Original Classification:", 
                                    classification_lovs)
-start_date = col3.date_input("Start Date", value=MIN_AUTHORED,
-                             min_value=MIN_AUTHORED,
-                             max_value=MAX_AUTHORED)
-end_date = col4.date_input("End Date", value=MAX_AUTHORED, 
-                             min_value=MIN_AUTHORED,
-                             max_value=MAX_AUTHORED)
+dates = col3.date_input("Date Range", value=[], 
+                        min_value=MIN_AUTHORED, max_value=MAX_AUTHORED) 
 null_date = col3.checkbox("Include documents without a date", value=True)    
     
 
@@ -48,6 +44,7 @@ predicates = []
 sg.add_predicate(predicates, sg.lov_predicate('corpus', corpora))
 sg.add_predicate(predicates, sg.lov_predicate('classification', 
                                               classifications))
+start_date, end_date = sg.convert_daterange(dates, "%Y/%m/%d")
 sg.add_predicate(predicates, 
                  sg.daterange_predicate('authored',
                                         start_date, end_date, null_date, 
@@ -55,14 +52,19 @@ sg.add_predicate(predicates,
 sg.add_predicate(predicates, sg.search_predicate('full_text', search_str))  
 where_clause = sg.where_clause(predicates)
 
-# metrics
+# display WHERE clause
+st.divider()
+query_display = where_clause.replace("full_text @@ websearch_to_tsquery('english',", 
+                                     "search(")
+if query_display:
+    st.caption(":grey[Query Criteria]")
+    st.code(f"{query_display}", language="sql")
+
+# display metrics
 metrics_sql = sg.query('metrics', config["table_name"], where_clause)
 metrics_df = db.execute(metrics_sql)
 metrics = metrics_df.iloc[0] 
 
-# display WHERE clause and counts
-st.subheader(where_clause.replace("full_text @@ websearch_to_tsquery('english',", 
-                                  "search("))
 st.metric(label="Documents Found", value=f"{metrics['doc_cnt']:,}", delta=None)
 # if there are results, execute bar_chart and possibly other queries 
 if metrics['doc_cnt']:
