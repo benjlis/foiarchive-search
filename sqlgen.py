@@ -39,24 +39,30 @@ def search_predicate(colname, searchstr):
 
 def daterange_predicate(colname, start_date, end_date, null_date, 
                         min_date, max_date):
-    if start_date == min_date and end_date == max_date and null_date:
-        return None # no predicate needed default state
+    if (start_date == min_date or start_date is None) and \
+       (end_date == max_date or end_date is None):
+       if null_date: 
+           return None # no predicate needed default state
+       else:
+           return f"{colname} is not null"
     else:
-        daterange = f"({compare_predicate(colname, ' >= ', start_date)} and "
-        daterange += f"{compare_predicate(colname, ' <= ', end_date)}"
+        daterange = "("
+        if start_date:
+            daterange += f"{compare_predicate(colname, ' >= ', start_date)}"
+            if end_date:
+                daterange += " and "
+        if end_date:
+            daterange += f"{compare_predicate(colname, ' <= ', end_date)}"
         if null_date:
             daterange += f" or {colname} is null)"
         else:
-            daterange += f")"
+            daterange += ")"
     return daterange 
-
-    sg.compare_predicate('authored', ' >= ', start_date)
 
 
 def add_predicate(predicates, text):
     if text:
         predicates.append(text)
-
 
 
 def where_clause(predicates):
