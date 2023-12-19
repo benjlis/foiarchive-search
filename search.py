@@ -74,8 +74,8 @@ if metrics['doc_cnt']:
     st.bar_chart(data=bar_chart_df, x=x_axis_label, y="Documents", color="Corpus",
                  use_container_width=True)    
     if metrics['doc_cnt'] > config["max_rows"]:
-        st.write(f"**Note:** Filter to {config['max_rows']} or \
-                 less documents to see full details")
+        st.caption(f"**Note:** Queries of {config['max_rows']} \
+                 documents or less return downloadable metadata and text.")
     else:
         data_table_sql = sg.query('data_table', config["table_name"], 
                                   where_clause)        
