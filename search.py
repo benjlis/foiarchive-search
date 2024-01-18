@@ -60,6 +60,7 @@ query_display = where_clause.replace("full_text @@ websearch_to_tsquery('english
 if query_display:
     st.caption(":grey[Query Criteria]")
     st.code(f"{query_display}", language="sql")
+    print(f'query|{datetime.datetime.now()}|{query_display}')
 
 # display metrics
 metrics_sql = sg.query('metrics', config["table_name"], where_clause)
