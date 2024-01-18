@@ -28,7 +28,8 @@ MAX_AUTHORED = datetime.date(2013, 7, 8)
 # display widgets
 search_str = st.text_input(label=config['search_str_label'],
                            label_visibility="visible",
-                           help=config['search_str_help'])
+                           help=config['search_str_help'],
+                           value=st.query_params.get('qry'))
 col1, col2, col3 = st.columns(3)
 corpora = col1.multiselect("Corpus", corpora_lovs)
 classifications = col2.multiselect("Original Classification:", 
@@ -87,4 +88,5 @@ if metrics['doc_cnt']:
                      column_config=cf.COLUMN_CONFIGS)
         st.caption("Double click cell to activate")
 
+st.query_params.clear()
 footer.display()
