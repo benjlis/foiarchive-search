@@ -14,6 +14,7 @@ st.set_page_config(page_title=config["tab_title"],
                                'About': f"### {config['gui_title']}\n" +
                                         f"{config['about_body']}"})
 import column_configs as cf
+import aggrid
 import db
 import footer
 
@@ -84,9 +85,12 @@ if metrics['doc_cnt']:
         data_table_sql = sg.query('data_table', config["table_name"], 
                                   where_clause)        
         data_table_df = db.execute(data_table_sql)
-        st.dataframe(data=data_table_df, hide_index=True, 
-                     use_container_width=True, 
-                     column_config=cf.COLUMN_CONFIGS)
+        # st.dataframe(data=data_table_df, hide_index=True, 
+        #              use_container_width=True, 
+        #              column_config=cf.COLUMN_CONFIGS)
+        selected = aggrid.grid(data_table_df)
+        if selected:
+            st.write(selected)
         st.caption("Double click cell to activate")
 
 st.query_params.clear()
