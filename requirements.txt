@@ -2,3 +2,4 @@ streamlit==1.30.0
 psycopg2-binary==2.9.9
 SQLAlchemy==2.0.22
 tomli==2.0.1
+streamlit-aggrid==0.3.4.post3
