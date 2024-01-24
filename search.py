@@ -88,10 +88,19 @@ if metrics['doc_cnt']:
         # st.dataframe(data=data_table_df, hide_index=True, 
         #              use_container_width=True, 
         #              column_config=cf.COLUMN_CONFIGS)
+        st.caption("Select Row to See Additional Details")
         selected = aggrid.grid(data_table_df)
-        if selected:
-            st.write(selected)
-        st.caption("Double click cell to activate")
+        if selected:     # row selected
+            d = selected[0]
+            st.subheader(f"{d['title']}" )
+            st.markdown(f"**Date**: {d['authored']} | **Corpus:** {d['corpus']} |")
+            # st.subheader("Document Details")
+            # st.markdown(f"**Title**: {selected[0]['title']}")
+            st.markdown(f"**URL:** {d['doc_url']}")
+            # st.markdown('**Body:**')
+            with st.container(height=600):
+                st.markdown(f"{d['body']}")
+        
 
 st.query_params.clear()
 footer.display()
