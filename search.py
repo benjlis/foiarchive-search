@@ -15,6 +15,7 @@ st.set_page_config(page_title=config["tab_title"],
                                         f"{config['about_body']}"})
 import column_configs as cf
 import aggrid
+import docviewer
 import db
 import footer
 
@@ -91,16 +92,7 @@ if metrics['doc_cnt']:
         st.caption("Select Row to See Additional Details")
         selected = aggrid.grid(data_table_df)
         if selected:     # row selected
-            d = selected[0]
-            st.subheader(f"{d['title']}" )
-            st.markdown(f"**Date**: {d['authored']} | **Corpus:** {d['corpus']} |")
-            # st.subheader("Document Details")
-            # st.markdown(f"**Title**: {selected[0]['title']}")
-            st.markdown(f"**URL:** {d['doc_url']}")
-            # st.markdown('**Body:**')
-            with st.container(height=600):
-                st.markdown(f"{d['body']}")
+            docviewer.docviewer(selected[0])
         
-
 st.query_params.clear()
 footer.display()
