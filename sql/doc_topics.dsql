@@ -1,0 +1,4 @@
+select topic_name, title tokens
+    from foiarchive.topics t join foiarchive.topics_docs td on (t.topic_id = td.topic_id)
+    where td.doc_id = '{doc_id}'
+    order by topic_name;
