@@ -1,4 +1,6 @@
 import streamlit as st
+import db
+import sqlgen as sg
 
 def escape_markdown(text):
     """
@@ -24,10 +26,14 @@ def escape_markdown(text):
 
 
 def docviewer(doc):
-    esc_title = escape_markdown(doc['title'])
     st.subheader(f"{doc['title']}" )
     st.markdown(f"**Date**: {doc['authored']} | **Corpus:** {doc['corpus']} | \
                   **ID:** {doc['doc_id']} | **URL:** {doc['doc_url']}")
+    doc_topics_sql = sg.get_topics(doc['doc_id'])
+    tdf = db.execute(doc_topics_sql)
+    if not tdf.empty:
+        st.markdown(f"**Topic(s)**: {tdf['topic_name'].to_list()}")
+    # st.table(tdf)
     with st.container(height=600):
         st.markdown(f"{escape_markdown(doc['body'])}")
 
