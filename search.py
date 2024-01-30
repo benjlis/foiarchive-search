@@ -86,7 +86,6 @@ if metrics['doc_cnt']:
         data_table_sql = sg.query('data_table', config["table_name"], 
                                   where_clause)        
         data_table_df = db.execute(data_table_sql)
-        st.caption("Select Row to See Additional Details")
         selected = aggrid.grid(data_table_df)
         if selected:     # row selected
             docviewer.docviewer(selected[0])
