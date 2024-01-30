@@ -1,7 +1,13 @@
+import streamlit as st
 from st_aggrid import AgGrid
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 def grid(df):
+    csv = df.drop('body', axis=1).to_csv().encode('utf-8')
+    st.download_button(label="CSV download", data=csv, 
+                       help="Download search results including document URLs",  
+                       file_name='foiarchive-search.csv', mime='text/csv')
+    st.markdown("Select row to see additional details including document text:")
     gb = GridOptionsBuilder.from_dataframe(df)
     gb.configure_default_column(value=True, editable=False)
     gb.configure_grid_options(domLayout='normal')
