@@ -99,3 +99,6 @@ def aggquery(template_name, table_name, where_clause, agg_column):
     return template.format(table_name=table_name, where_clause=where_clause,
                            agg_column=agg_column)
 
+def get_topics(doc_id):
+    template = load_dynamic("doc_topics")
+    return template.format(doc_id=doc_id) 
