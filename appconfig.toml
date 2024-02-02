@@ -1,4 +1,4 @@
-gui_title = "FOIArchive Search"
+gui_title = ":books: Freedom of Information Archive (FOIArchive)"
 tab_title = "HL: FOIArchive Search"
 favicon = "static/hl-logo-favicon.png"
 search_str_label="\U0001F50E  \tSearch the FOIArchive"
