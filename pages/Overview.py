@@ -14,7 +14,8 @@ st.markdown("The FOIArchive is a collection of documents obtained through \
              obtained and processed.")
 
 st.subheader("Corpora Description")
-st.markdown("##### CIA Crest Collection (cia)")
+with open(c.config["corpora_description"], "r") as f:
+    st.markdown(f.read())
 
 st.subheader("Motivation")
 st.markdown("Although this video is a few years old, it still does a great job\

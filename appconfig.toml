@@ -11,6 +11,7 @@ about_body = """
 Built by Columbia University's [History Lab](http://history-lab.org) with generous support 
 from the NEH.
 """
+corpora_description="static/corpora_description.md"
 #
 table_name = "foiarchive.docs"
 max_rows = 2000     # results must be <= to display detail records
