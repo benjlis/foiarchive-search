@@ -2,8 +2,6 @@ import streamlit as st
 
 def display():
     st.divider()
-    st.markdown('Please [contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search) \
-                 with your questions, comments, and suggestions.')
     st.subheader("About")
     st.markdown("Columbia University's [History Lab](http://history-lab.org) \
                 created, maintains, and enhances the FOIArchive and its associated tools.")
