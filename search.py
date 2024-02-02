@@ -20,6 +20,12 @@ import db
 import footer
 
 st.title(config['gui_title'])
+st.header("Search")
+with st.sidebar:
+    st.divider()
+    st.markdown('Please [contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search) \
+                 with your questions, comments, and suggestions.')
+    st.markdown("[History Lab Homepage](http://history-lab.org)")
 
 # GUI search widgets
 # get values to populate values and ranges
