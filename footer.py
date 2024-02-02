@@ -5,7 +5,7 @@ def sidebar():
                  with your questions, comments, and suggestions.')
     st.markdown("[History Lab Homepage](http://history-lab.org)")
 
-def display():
+def footer():
     st.divider()
     st.subheader("About")
     st.markdown("Columbia University's [History Lab](http://history-lab.org) \
