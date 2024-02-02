@@ -17,14 +17,12 @@ import column_configs as cf
 import aggrid
 import docviewer
 import db
-import footer
+import boilerplate
 
 st.title(config['gui_title'])
 st.header("Search")
 with st.sidebar:
-    st.markdown('Please [contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search) \
-                 with your questions, comments, and suggestions.')
-    st.markdown("[History Lab Homepage](http://history-lab.org)")
+    boilerplate.sidebar()
 
 # GUI search widgets
 # get values to populate values and ranges
@@ -96,4 +94,4 @@ if metrics['doc_cnt']:
             docviewer.docviewer(selected[0])
         
 st.query_params.clear()
-footer.display()
+boilerplate.footer()
