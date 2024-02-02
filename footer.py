@@ -1,5 +1,10 @@
 import streamlit as st
 
+def sidebar():
+    st.markdown('Please [contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search) \
+                 with your questions, comments, and suggestions.')
+    st.markdown("[History Lab Homepage](http://history-lab.org)")
+
 def display():
     st.divider()
     st.subheader("About")
