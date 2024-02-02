@@ -1,29 +1,14 @@
-import datetime
-import tomli
-import sqlgen as sg
 import streamlit as st
-# load configs
-with open("appconfig.toml", mode="rb") as fp:
-    config = tomli.load(fp)
-# must be 1st streamlit cmd or strange behavior ensues
-st.set_page_config(page_title=config["tab_title"],
-                   page_icon=config["favicon"],
-                   layout="wide",
-                   menu_items={'Get Help': config["help_action"],
-                               'Report a bug': config["bug_action"],
-                               'About': f"### {config['gui_title']}\n" +
-                                        f"{config['about_body']}"})
-import column_configs as cf
+import configs as c 
+c.page()    # must be 1st streamlit cmd or strange behavior ensues
+import datetime
+import sqlgen as sg
 import aggrid
 import docviewer
 import db
 import boilerplate
 
-st.title(config['gui_title'])
 st.header("Search")
-with st.sidebar:
-    boilerplate.sidebar()
-
 # GUI search widgets
 # get values to populate values and ranges
 classification_lovs = db.get_lov("classifications", "classification")
@@ -31,9 +16,9 @@ corpora_lovs = db.get_lov("corpora", "corpus")
 MIN_AUTHORED = datetime.date(1861, 5, 1)
 MAX_AUTHORED = datetime.date(2013, 7, 8)
 # display widgets
-search_str = st.text_input(label=config['search_str_label'],
+search_str = st.text_input(label=c.config['search_str_label'],
                            label_visibility="visible",
-                           help=config['search_str_help'],
+                           help=c.config['search_str_help'],
                            value=st.query_params.get('qry'))
 col1, col2, col3 = st.columns(3)
 corpora = col1.multiselect("Corpus", corpora_lovs)
@@ -68,7 +53,7 @@ if query_display:
     print(f'query|{datetime.datetime.now()}|{query_display}', flush=True)
 
 # display metrics
-metrics_sql = sg.query('metrics', config["table_name"], where_clause)
+metrics_sql = sg.query('metrics', c.config["table_name"], where_clause)
 metrics_df = db.execute(metrics_sql)
 metrics = metrics_df.iloc[0] 
 
@@ -76,17 +61,17 @@ st.metric(label="Documents Found", value=f"{metrics['doc_cnt']:,}", delta=None)
 # if there are results, execute bar_chart and possibly other queries 
 if metrics['doc_cnt']:
     aggdate, x_axis_label = sg.aggdate_expr('authored', metrics)
-    bar_chart_sql = sg.aggquery('bar_chart', config["table_name"], 
+    bar_chart_sql = sg.aggquery('bar_chart', c.config["table_name"], 
                                  where_clause, aggdate)
     bar_chart_df = db.execute(bar_chart_sql)
     bar_chart_df.rename(columns={'Date': x_axis_label}, inplace=True)
     st.bar_chart(data=bar_chart_df, x=x_axis_label, y="Documents", color="Corpus",
                  use_container_width=True)    
-    if metrics['doc_cnt'] > config["max_rows"]:
-        st.caption(f"**Note:** Queries of {config['max_rows']} \
+    if metrics['doc_cnt'] > c.config["max_rows"]:
+        st.caption(f"**Note:** Queries of {c.config['max_rows']} \
                  documents or less return downloadable metadata and text.")
     else:
-        data_table_sql = sg.query('data_table', config["table_name"], 
+        data_table_sql = sg.query('data_table', c.config["table_name"], 
                                   where_clause)        
         data_table_df = db.execute(data_table_sql)
         selected = aggrid.grid(data_table_df)
