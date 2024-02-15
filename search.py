@@ -26,8 +26,7 @@ classifications = col2.multiselect("Original Classification:",
                                    classification_lovs)
 dates = col3.date_input("Date Range", value=[], 
                         min_value=MIN_AUTHORED, max_value=MAX_AUTHORED) 
-null_date = col3.checkbox("Include documents without a date", value=True)    
-    
+null_date = col3.checkbox("Include documents without a date", value=True)     
 
 # Dynamic SQL generation
 # build where clause
@@ -56,7 +55,6 @@ if query_display:
 metrics_sql = sg.query('metrics', c.config["table_name"], where_clause)
 metrics_df = db.execute(metrics_sql)
 metrics = metrics_df.iloc[0] 
-
 st.metric(label="Documents Found", value=f"{metrics['doc_cnt']:,}", delta=None)
 # if there are results, execute bar_chart and possibly other queries 
 if metrics['doc_cnt']:
