@@ -1,8 +1,9 @@
 import streamlit as st
 import configs as c
-import boilerplate
-
 c.page()
+import boilerplate
+import sqlgen as sg
+import db
 
 # st.header("FOIArchive Overview")
 st.header("Overview")
@@ -12,6 +13,15 @@ st.markdown("The FOIArchive is a collection of documents obtained through \
              but also include materials from other countries. The collection \
              is a work in progress, with new documents added as they are \
              obtained and processed.")
+st.markdown("The foiarchive is currently comprised of:")
+
+# display metrics
+totals_sql = sg.query('totals', "foiarchive.totals", None)
+totals_df = db.execute(totals_sql)
+doc_cnt, pg_cnt, word_cnt = totals_df.iloc[0] 
+st.metric(label="Documents", value=f"{doc_cnt:,}", delta=None)
+st.metric(label="Pages", value=f"{pg_cnt:,}", delta=None)
+st.metric(label="Words", value=f"{word_cnt:,}", delta=None)
 
 st.subheader("Corpora Description")
 with open(c.config["corpora_description"], "r") as f:
