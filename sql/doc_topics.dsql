@@ -1,4 +1,6 @@
-select t.name, t.title tokens
-    from foiarchive.topics t join foiarchive.topic_docs td on (t.topic_id = td.topic_id)
+select t.name, t.title, td.score
+    from foiarchive.topics t 
+        join foiarchive.topic_docs td
+            on (t.corpus = td.corpus and t.topic_id = td.topic_id)
     where td.doc_id = '{doc_id}'
-    order by t.name;
+    order by td.score desc;

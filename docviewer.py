@@ -32,8 +32,8 @@ def docviewer(doc):
     doc_topics_sql = sg.get_topics(doc['doc_id'])
     tdf = db.execute(doc_topics_sql)
     if not tdf.empty:
-        st.markdown(f"**Topic(s)**: {tdf['topic_name'].to_list()}")
-    # st.table(tdf)
+        st.markdown(f"**Topic(s)**:")
+        st.dataframe(tdf, hide_index=True)       
     with st.container(height=600):
         st.markdown(f"{escape_markdown(doc['body'])}")
 
