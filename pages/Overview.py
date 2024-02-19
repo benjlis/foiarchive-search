@@ -1,12 +1,10 @@
 import streamlit as st
 import configs as c
-c.page()
+c.page("Overview")    # must be 1st streamlit cmd or strange behavior ensues
 import boilerplate
 import sqlgen as sg
 import db
 
-# st.header("FOIArchive Overview")
-st.header("Overview")
 st.markdown("The FOIArchive is a collection of documents obtained through \
              the Freedom of Information Act (FOIA) and other public records \
              requests. The documents are primarily from the U.S. government, \
