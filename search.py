@@ -1,6 +1,6 @@
 import streamlit as st
 import configs as c 
-c.page()    # must be 1st streamlit cmd or strange behavior ensues
+c.page("Search")    # must be 1st streamlit cmd or strange behavior ensues
 import datetime
 import sqlgen as sg
 import aggrid
