@@ -8,7 +8,6 @@ import docviewer
 import db
 import boilerplate
 
-st.header("Search")
 # GUI search widgets
 # get values to populate values and ranges
 classification_lovs = db.get_lov("classifications", "classification")
