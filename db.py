@@ -7,14 +7,14 @@ def load(filename):
         sql = file.read()
     return sql
 
-def load_execute(filename, ttl):
-    return conn.query(load(filename), ttl=ttl)
+@st.cache_data
+def load_execute(filename):
+    return conn.query(load(filename))
 
 def execute(query):
     return conn.query(query)
 
-@st.cache_data
 def get_lov(filename, colname):
-    lov_df = load_execute(filename, ttl="1d")
+    lov_df = load_execute(filename)
     lov_list = lov_df[colname].to_list()
     return lov_list
