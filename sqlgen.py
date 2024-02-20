@@ -26,9 +26,12 @@ def lov_predicate(colname, values):
     lov = lov[:-2] + ')'
     return lov
 
-def compare_predicate(colname, operator, value):
+def compare_predicate(colname, operator, value, is_value_str=True):
     if value:
-        return f"{colname} {operator} '{value}'"
+        if is_value_str:
+            return f"{colname} {operator} '{value}'"
+        else:
+            return f"{colname} {operator} {value}"
     
 def search_predicate(colname, searchstr):
     if searchstr:
