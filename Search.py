@@ -8,6 +8,8 @@ import docviewer
 import db
 import boilerplate
 
+st.page_link("pages/Overview.py", 
+             label="First-time visitor? Please check out the Overview.")
 # GUI search widgets
 # get values to populate values and ranges
 classification_lovs = db.get_lov("classifications", "classification")
@@ -15,8 +17,9 @@ corpora_lovs = db.get_lov("corpora", "corpus")
 MIN_AUTHORED = datetime.date(1861, 5, 1)
 MAX_AUTHORED = datetime.date(2013, 7, 8)
 # display widgets
-search_str = st.text_input(label=c.config['search_str_label'],
-                           label_visibility="visible",
+search_str = st.text_input(label_visibility="visible",
+                           label="Full Text Search",
+                           placeholder="Enter search terms",
                            help=c.config['search_str_help'],
                            value=st.query_params.get('qry'))
 col1, col2, col3 = st.columns(3)
