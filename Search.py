@@ -8,8 +8,7 @@ import docviewer
 import db
 import boilerplate
 
-st.page_link("pages/Overview.py", 
-             label="First-time visitor? Please check out the Overview.")
+st.markdown('Learn more about the FOIArchive [here](../Overview).')
 # GUI search widgets
 # get values to populate values and ranges
 classification_lovs = db.get_lov("classifications", "classification")
