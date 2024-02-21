@@ -5,13 +5,14 @@ import boilerplate
 import sqlgen as sg
 import db
 
-st.markdown("The FOIArchive is a collection of documents obtained through \
+st.markdown("The Freedom of Information Archive (FOIArchive) is a collection \
+             of documents obtained through \
              the Freedom of Information Act (FOIA) and other public records \
              requests. The documents are primarily from the U.S. government, \
              but also include materials from other countries. The collection \
              is a work in progress, with new documents added as they are \
              obtained and processed.")
-st.markdown("The foiarchive is currently comprised of:")
+st.markdown("The FOIArchive is currently comprised of:")
 
 # display metrics
 totals_sql = sg.query('totals', "foiarchive.totals", None)
