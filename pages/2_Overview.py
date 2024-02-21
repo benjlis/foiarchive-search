@@ -18,11 +18,24 @@ st.markdown("The FOIArchive is currently comprised of:")
 totals_sql = sg.query('totals', "foiarchive.totals", None)
 totals_df = db.execute(totals_sql)
 doc_cnt, pg_cnt, word_cnt = totals_df.iloc[0] 
-st.metric(label="Documents", value=f"{doc_cnt:,}", delta=None)
-st.metric(label="Pages", value=f"{pg_cnt:,}", delta=None)
-st.metric(label="Words", value=f"{word_cnt:,}", delta=None)
+col1, col2, col3 = st.columns(3)
+col1.metric(label="**Documents**", value=f"{doc_cnt:,}", delta=None)
+col2.metric(label="**Pages**", value=f"{pg_cnt:,}", delta=None)
+col3.metric(label="**Words**", value=f"{word_cnt:,}", delta=None)
 
-st.subheader("Corpora Description")
+st.header("Corpora")
+st.subheader("Statistics")
+cdf = db.load_execute("corpora")
+st.dataframe(cdf, hide_index=True,
+             column_config={
+                "corpus": "Corpus",
+                "begin_date": "Starts",
+                "end_date": "Ends",
+                "doc_cnt": "Documents",
+                "pg_cnt": "Pages",
+                "word_cnt": "Words",
+                "topic_cnt": "Topics"})
+st.subheader("Description")
 with open(c.config["corpora_description"], "r") as f:
     st.markdown(f.read())
 
