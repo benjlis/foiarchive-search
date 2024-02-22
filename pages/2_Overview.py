@@ -5,25 +5,45 @@ import boilerplate
 import sqlgen as sg
 import db
 
-st.markdown("The Freedom of Information Archive (FOIArchive) is a collection \
-             of documents obtained through \
-             the Freedom of Information Act (FOIA) and other public records \
-             requests. The documents are primarily from the U.S. government, \
-             but also include materials from other countries. The collection \
-             is a work in progress, with new documents added as they are \
-             obtained and processed.")
-st.markdown("The FOIArchive is currently comprised of:")
+"""
+The Freedom of Information Archive (FOIArchive) is a collection of documents
+obtained through the Freedom of Information Act (FOIA) and other public 
+records requests. The documents are primarily from the U.S. government but
+include materials from other countries. Its focus is on international 
+relations. The collection is a work in progress, with new documents added as
+they are obtained and processed. The FOIArchive consists of:
+"""
 
 # display metrics
-totals_sql = sg.query('totals', "foiarchive.totals", None)
+totals_sql = sg.query('totals', 'foiarchive.totals', None)
 totals_df = db.execute(totals_sql)
 doc_cnt, pg_cnt, word_cnt = totals_df.iloc[0] 
 col1, col2, col3 = st.columns(3)
 col1.metric(label="**Documents**", value=f"{doc_cnt:,}", delta=None)
 col2.metric(label="**Pages**", value=f"{pg_cnt:,}", delta=None)
 col3.metric(label="**Words**", value=f"{word_cnt:,}", delta=None)
+# display metrics over time
+"""
+Here is the time distribution of FOIArchive information: 
+"""
+totals_sql = sg.query('totals', 'foiarchive.totals_decade', None)
+totals_df = db.execute(totals_sql)
+totals_df.rename(columns={'decade':'Decade',
+                          'word_cnt': 'Words',
+                          'pg_cnt': 'Pages',
+                          'doc_cnt': 'Documents'}, 
+                 inplace=True)
+metrics =['Documents', 'Pages', 'Words']
+metric = st.radio('**Metric**', metrics, index=2,
+                  horizontal=True,
+                  label_visibility='collapsed')
+st.bar_chart(data=totals_df, x='Decade', y=metric, use_container_width=True)
 
 st.header("Corpora")
+"""
+The FOIArchive is composed of numerous corpora. In this section, we describe
+each corpus.
+"""
 st.subheader("Statistics")
 cdf = db.load_execute("corpora")
 st.dataframe(cdf, hide_index=True,
