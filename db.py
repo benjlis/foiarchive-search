@@ -1,13 +1,12 @@
 import streamlit as st
 
-conn = st.connection("postgresql", type="sql")
+conn = st.connection("postgresql", type="sql", ttl="1d" )
 
 def load(filename):
     with open(f'sql/{filename}.sql', 'r') as file:
         sql = file.read()
     return sql
 
-@st.cache_data
 def load_execute(filename):
     return conn.query(load(filename))
 
