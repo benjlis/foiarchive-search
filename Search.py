@@ -25,9 +25,11 @@ search_str = st.text_input(label_visibility="visible",
 col1, col2, col3 = st.columns(3)
 corpora = col1.multiselect("Corpus", corpora_lovs)
 classifications = col2.multiselect("Original Classification:", 
-                                   classification_lovs)
+                                   classification_lovs,
+                                   help=c.config['classification_help'])
 dates = col3.date_input("Date Range", value=[], 
-                        min_value=MIN_AUTHORED, max_value=MAX_AUTHORED) 
+                        min_value=MIN_AUTHORED, max_value=MAX_AUTHORED,
+                        help=c.config['date_help']) 
 null_date = col3.checkbox("Include documents without a date", value=True)     
 
 # Dynamic SQL generation
