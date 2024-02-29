@@ -12,7 +12,7 @@ obtained through the Freedom of Information Act (FOIA) and other public
 records requests. The documents are primarily from the U.S. government but
 include materials from other countries. Its focus is on international 
 relations. The collection is a work in progress, with new documents added as
-they are obtained and processed. The FOIArchive consists of:
+they are obtained and processed. 
 """
 
 # display metrics
@@ -24,9 +24,7 @@ col1.metric(label="**Documents**", value=f"{doc_cnt:,}", delta=None)
 col2.metric(label="**Pages**", value=f"{pg_cnt:,}", delta=None)
 col3.metric(label="**Words**", value=f"{word_cnt:,}", delta=None)
 # display metrics over time
-"""
-Here is the time distribution of FOIArchive information: 
-"""
+
 totals_sql = sg.query('totals', 'foiarchive.totals_decade', None)
 totals_df = db.execute(totals_sql)
 totals_df.rename(columns={'decade':'Decade',
@@ -39,13 +37,9 @@ metric = st.radio('**Metric**', metrics, index=2,
                   horizontal=True,
                   label_visibility='collapsed')
 st.bar_chart(data=totals_df, x='Decade', y=metric, use_container_width=True)
-
-st.header("Corpora")
 """
-The FOIArchive is composed of numerous corpora. In this section, we describe
-each corpus.
+The FOIArchive is composed of numerous corpora.
 """
-st.subheader("Statistics")
 cdf = db.load_execute("corpora")
 # ag.grid(cdf) - needs work
 st.dataframe(cdf, hide_index=True,
@@ -57,7 +51,6 @@ st.dataframe(cdf, hide_index=True,
                 "pg_cnt": "Pages",
                 "word_cnt": "Words",
                 "topic_cnt": "Topics"})
-st.subheader("Description")
 with open(c.config["corpora_description"], "r") as f:
     st.markdown(f.read())
 
