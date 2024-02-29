@@ -8,8 +8,6 @@ import docviewer
 import db
 import boilerplate
 
-st.page_link("pages/2_Overview.py", 
-             label="Learn more about the FOIArchive")
 # GUI search widgets
 # get values to populate values and ranges
 classification_lovs = db.get_lov("classifications", "classification")
