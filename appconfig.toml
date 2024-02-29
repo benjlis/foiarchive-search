@@ -4,6 +4,12 @@ favicon = "static/hl-logo-favicon.png"
 search_str_help="""
 Use double quotes for phrases, OR for logical or, and - for logical not.
 """
+corpus_placeholder="""
+Optionally restrict to specific corpora
+"""
+classification_placeholder="""
+Optionally restrict to specific classifications
+"""
 classification_help="""
 Some documents do not include original classification in metadata, so consider
 including the 'unknown' classification when searching by classification.

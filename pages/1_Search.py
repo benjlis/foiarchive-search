@@ -16,14 +16,18 @@ MIN_AUTHORED = datetime.date(1861, 5, 1)
 MAX_AUTHORED = datetime.date(2013, 7, 8)
 # display widgets
 search_str = st.text_input(label_visibility="visible",
-                           label="Full Text Search",
+                           label="Full-Text",
                            placeholder="Enter search terms",
                            help=c.config['search_str_help'],
                            value=st.query_params.get('qry'))
 col1, col2, col3 = st.columns(3)
-corpora = col1.multiselect("Corpus", corpora_lovs)
+corpora = col1.multiselect("Corpus", 
+                           corpora_lovs,
+                           placeholder=c.config['corpus_placeholder'])
 classifications = col2.multiselect("Original Classification:", 
                                    classification_lovs,
+                                   placeholder=
+                                    c.config['classification_placeholder'],
                                    help=c.config['classification_help'])
 dates = col3.date_input("Date Range", value=[], 
                         min_value=MIN_AUTHORED, max_value=MAX_AUTHORED,
