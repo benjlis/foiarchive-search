@@ -79,7 +79,8 @@ if query_display:
                                     where_clause)        
             data_table_df = db.execute(data_table_sql)
             st.dataframe(data_table_df, 
-                         hide_index=True, 
+                         hide_index=True,
+                         column_order=column_configs.COLUMN_ORDER, 
                          column_config=column_configs.COLUMN_CONFIGS)
             # selected = aggrid.grid(data_table_df)
             # if selected:     # row selected

@@ -3,6 +3,7 @@ import streamlit as st
 # information such as authentication or authorization details. Assume the
 # world has read privaleges on this file!
 
+COLUMN_ORDER = ["doc_url", "title", "authored", "corpus", "classification", "pg_cnt", "word_cnt"]
 COLUMN_CONFIGS = {
     "doc_id": st.column_config.TextColumn("Document ID", 
                                           help="Unique Document ID", 
