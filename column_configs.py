@@ -26,11 +26,12 @@ COLUMN_CONFIGS = {
                                               help="Document word count",
                                               width="small"),                            
     "title": st.column_config.TextColumn("Title",
-                                         help="Document title"),
-    "doc_url": st.column_config.LinkColumn("Doc URL",
-                                           help="URL to human readable version of doc.\
-                                             Double click on cell for clickable link.",
-                                    width="large"),
+                                         help="Document title",
+                                         width="large"),
+    "doc_url": st.column_config.LinkColumn("Source",
+                                           help="Opens the source document in a new tab.",
+                                           display_text="View",
+                                           width="small"),
     "body": st.column_config.TextColumn("Plain Text",
                                         help="Document body in plain text,\
                                               often produced by OCR.\
