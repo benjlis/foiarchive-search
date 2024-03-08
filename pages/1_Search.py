@@ -78,7 +78,8 @@ if query_display:
             data_table_sql = sg.query('data_table', c.config["table_name"], 
                                     where_clause)        
             data_table_df = db.execute(data_table_sql)
-            st.dataframe(data_table_df, 
+            st.dataframe(data_table_df,
+                         use_container_width=True, 
                          hide_index=True,
                          column_order=column_configs.COLUMN_ORDER, 
                          column_config=column_configs.COLUMN_CONFIGS)
