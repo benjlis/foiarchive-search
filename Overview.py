@@ -4,7 +4,6 @@ c.page("Overview")    # must be 1st streamlit cmd or strange behavior ensues
 import boilerplate
 import sqlgen as sg
 import db
-import aggrid as ag
 
 """
 The Freedom of Information Archive (FOIArchive) is a collection of documents
