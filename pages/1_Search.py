@@ -3,9 +3,7 @@ import configs as c
 c.page("Search")    # must be 1st streamlit cmd or strange behavior ensues
 import datetime
 import sqlgen as sg
-# import aggrid
 import column_configs
-# import docviewer
 import db
 import boilerplate
 
@@ -82,10 +80,6 @@ if query_display:
                          use_container_width=True, 
                          hide_index=True,
                          column_order=column_configs.COLUMN_ORDER, 
-                         column_config=column_configs.COLUMN_CONFIGS)
-            # selected = aggrid.grid(data_table_df)
-            # if selected:     # row selected
-            #    docviewer.docviewer(selected[0])
-        
+                         column_config=column_configs.COLUMN_CONFIGS)        
 st.query_params.clear()
 boilerplate.footer()
