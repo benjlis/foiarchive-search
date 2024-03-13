@@ -1,12 +1,18 @@
 import streamlit as st
 
 def sidebar():
-    st.header("Freedom of Information Archive (FOIArchive)") 
-    st.markdown('Please [contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search) \
+    st.sidebar.header("Freedom of Information Archive (FOIArchive)") 
+    st.sidebar.markdown('Please [contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search) \
                  with your questions, comments, and suggestions.')
-    st.markdown("[History Lab Homepage](http://history-lab.org)")
+    # st.markdown("[History Lab Homepage](http://history-lab.org)")
+    st.sidebar.divider()
 
-
+def menu():
+    # Show a navigation menu for authenticated users
+    st.sidebar.page_link("Overview.py", label="Overview")
+    st.sidebar.page_link("pages/1_Search.py", label="Search")
+    st.sidebar.page_link("pages/2_Topics.py", label="Topics")
+    
 def footer():
     st.divider()
     st.subheader("About")
