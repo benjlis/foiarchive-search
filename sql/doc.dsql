@@ -1,0 +1,3 @@
+select authored, corpus, classification, title, doc_id, pg_cnt, word_cnt,
+       source, body
+    from {table_name} {where_clause};
