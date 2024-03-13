@@ -1,10 +1,9 @@
 import streamlit as st
 import configs as c
 c.page("Topic Models")
+import column_configs
 import db
 import sqlgen as sg
-import aggrid
-import docviewer
 
 """
 Query the FOIArchive via topics derived by topic modeling. You can find
@@ -27,6 +26,8 @@ where_clause=sg.where_clause(predicates)
 print(where_clause)
 topics_data_table_sql = sg.query('topics_data_table', c.config["table_name"], where_clause)        
 topics_data_table_df = db.execute(topics_data_table_sql)
-selected = aggrid.grid(topics_data_table_df)
-if selected:     # row selected
-    docviewer.docviewer(selected[0])
+st.dataframe(topics_data_table_df,
+             use_container_width=True, 
+             hide_index=True,
+             column_order=column_configs.COLUMN_ORDER.insert(0, 'score'), 
+             column_config=column_configs.COLUMN_CONFIGS) 
