@@ -28,6 +28,8 @@ corpora_description="static/corpora_description.md"
 #
 table_name = "foiarchive.docs"
 max_rows = 2000     # results must be <= to display detail records
+#
+docviewer_url="https://foiarchive-docviewer.streamlit.app"
 # not used currently but should be
 # schema =
 # tsvector_col =
