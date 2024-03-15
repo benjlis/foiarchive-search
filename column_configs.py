@@ -3,7 +3,7 @@ import streamlit as st
 # information such as authentication or authorization details. Assume the
 # world has read privaleges on this file!
 
-COLUMN_ORDER = ["doc_url", "title", "authored", "corpus", "classification", 
+COLUMN_ORDER = ["docviewer_url", "title", "authored", "corpus", "classification", 
                 "doc_id", "pg_cnt", "word_cnt", "body"]
 COLUMN_CONFIGS = {
     "doc_id": st.column_config.TextColumn("Document ID", 
@@ -33,6 +33,10 @@ COLUMN_CONFIGS = {
                                            help="Opens the source document in a new tab.",
                                            display_text="View",
                                            width="small"),
+    "docviewer_url": st.column_config.LinkColumn("Document",
+                                                help="Opens the document in the DocViewer",
+                                                display_text="View",
+                                                width="small"),
     "body": st.column_config.TextColumn("Plain Text",
                                         help="Document body in plain text,\
                                               often produced by OCR.\
