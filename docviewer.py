@@ -28,7 +28,7 @@ def display_topics(doc_id):
 
 def display_source(source):
     if source:
-        st.sidebar.markdown(f"### [Source]({source})")
+        st.markdown(f"[Source Document PDF]({source})")
 
 def display_cnt(type, cnt):
     if cnt:
@@ -37,11 +37,11 @@ def display_cnt(type, cnt):
 def display_doc(doc):
     st.subheader(doc.title)
     display_date(doc.authored)
+    display_source(doc.source)
     st.write(doc.body)
     display_citation(doc.title, doc.corpus, doc.doc_id)
     st.sidebar.markdown(f"### Original Classification: {doc.classification}") 
     display_topics(doc.doc_id)
-    display_source(doc.source)
     display_cnt('Pages', doc.pg_cnt)
     display_cnt('Words', doc.word_cnt)
     # st.write(doc)
