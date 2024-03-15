@@ -47,6 +47,7 @@ def display_doc(doc):
     display_cnt('Words', doc.word_cnt)
     # st.write(doc)
 
+print(f'viewer|{datetime.datetime.now()}|{doc_id}', flush=True)    # logging
 if doc_id:
     doc_sql = sg.query('doc',
                        c.config["table_name"], 
