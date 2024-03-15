@@ -1,5 +1,4 @@
 gui_title = ":books: FOIArchive"
-tab_title = "HL: FOIArchive"
 favicon = "static/hl-logo-favicon.png"
 search_str_help="""
 Use double quotes for phrases, OR for logical or, and - for logical not.
