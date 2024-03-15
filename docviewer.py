@@ -1,6 +1,7 @@
 import streamlit as st
-import configs as c 
-c.page("Document Viewer", display_menu=False)    # must be 1st streamlit cmd or strange behavior ensues
+import configs as c
+doc_id = st.query_params.get('doc_id') 
+c.page(f"{doc_id}", display_menu=False)    # must be 1st streamlit cmd or strange behavior ensues
 import datetime
 import sqlgen as sg
 import db
@@ -46,8 +47,6 @@ def display_doc(doc):
     display_cnt('Words', doc.word_cnt)
     # st.write(doc)
 
-
-doc_id = st.query_params.get('doc_id')
 if doc_id:
     doc_sql = sg.query('doc',
                        c.config["table_name"], 
