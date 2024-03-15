@@ -76,6 +76,8 @@ if query_display:
             data_table_sql = sg.query('data_table', c.config["table_name"], 
                                     where_clause)        
             data_table_df = db.execute(data_table_sql)
+            data_table_df['docviewer_url'] = data_table_df['doc_id'].apply(
+                lambda x: f"{c.config['docviewer_url']}?doc_id={x}")
             st.dataframe(data_table_df,
                          use_container_width=True, 
                          hide_index=True,
