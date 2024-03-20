@@ -1,7 +1,6 @@
 import streamlit as st
 import configs as c
 c.page("Topic Models")
-import column_configs
 import db
 import sqlgen as sg
 
@@ -29,5 +28,5 @@ topics_data_table_df = db.execute(topics_data_table_sql)
 st.dataframe(topics_data_table_df,
              use_container_width=True, 
              hide_index=True,
-             column_order=column_configs.COLUMN_ORDER.insert(0, 'score'), 
-             column_config=column_configs.COLUMN_CONFIGS) 
+             column_order=c.COLUMN_ORDER.insert(0, 'score'), 
+             column_config=c.COLUMN_CONFIGS) 
