@@ -39,9 +39,10 @@ st.bar_chart(data=totals_df, x='Decade', y=metric, use_container_width=True)
 The FOIArchive is composed of numerous corpora.
 """
 cdf = db.load_execute("corpora")
-# ag.grid(cdf) - needs work
-st.dataframe(cdf, hide_index=True,
-              column_config={
+st.dataframe(cdf, 
+             hide_index=True,
+             use_container_width=True, 
+             column_config={
                 "corpus": "Corpus",
                 "begin_date": "Starts",
                 "end_date": "Ends",
@@ -51,5 +52,4 @@ st.dataframe(cdf, hide_index=True,
                 "topic_cnt": "Topics"})
 with open(c.config["corpora_description"], "r") as f:
     st.markdown(f.read())
-
 c.footer()
