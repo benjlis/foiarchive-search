@@ -76,26 +76,3 @@ if doc_id:
 else:
     st.error("Error: No document ID provided")
 c.footer()
-
-def escape_markdown(text):
-    """
-    Replace characters that have special meaning in GitHub flavored Markdown.
-    """
-    text = text.replace('\\', '\\\\')
-    text = text.replace('*', '\\*')
-    text = text.replace('_', '\\_')
-    text = text.replace('{', '\\{')
-    text = text.replace('}', '\\}')
-    text = text.replace('[', '\\[')
-    text = text.replace(']', '\\]')
-    text = text.replace('(', '\\(')
-    text = text.replace(')', '\\)')
-    text = text.replace('#', '\\#')
-    text = text.replace('+', '\\+')
-    text = text.replace('-', '\\-')
-    text = text.replace('.', '\\.')
-    text = text.replace('!', '\\!')
-    text = text.replace(':', '\\:')
-    text = text.replace('$', '\\$')
-    return text
-
