@@ -42,7 +42,7 @@ def display_body(doc):
         if doc.corpus == 'frus':
             display_frus_body(doc.doc_id)
         else:
-            st.write(doc.body)
+            st.text(doc.body)
     else:
         st.write("No document body")
  
