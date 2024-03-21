@@ -4,7 +4,6 @@ c.page("Search")    # must be 1st streamlit cmd or strange behavior ensues
 import datetime
 import sqlgen as sg
 import db
-import boilerplate
 
 # GUI search widgets
 # get values to populate values and ranges
@@ -83,4 +82,4 @@ if query_display:
                          column_order=c.COLUMN_ORDER, 
                          column_config=c.COLUMN_CONFIGS)        
 st.query_params.clear()
-boilerplate.footer()
+c.footer()

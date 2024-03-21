@@ -1,7 +1,6 @@
 import streamlit as st
 import configs as c
 c.page("Overview")    # must be 1st streamlit cmd or strange behavior ensues
-import boilerplate
 import sqlgen as sg
 import db
 
@@ -53,4 +52,4 @@ st.dataframe(cdf, hide_index=True,
 with open(c.config["corpora_description"], "r") as f:
     st.markdown(f.read())
 
-boilerplate.footer()
+c.footer()
