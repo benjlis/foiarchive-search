@@ -60,7 +60,6 @@ def display_doc(doc):
     display_topics(doc.doc_id)
     display_cnt('Pages', doc.pg_cnt)
     display_cnt('Words', doc.word_cnt)
-    # st.write(doc)
 
 print(f'viewer|{datetime.datetime.now()}|{doc_id}', flush=True)    # logging
 if doc_id:
@@ -72,7 +71,6 @@ if doc_id:
         st.warning(f"Warning: No document with ID {doc_id} found")
     else:                   # doc exists, display it
         display_doc(doc_df.iloc[0])
-  
 else:
     st.error("Error: No document ID provided")
 c.footer()
