@@ -75,7 +75,7 @@ if doc_id:
   
 else:
     st.error("Error: No document ID provided")
-
+c.footer()
 
 def escape_markdown(text):
     """
@@ -98,3 +98,4 @@ def escape_markdown(text):
     text = text.replace(':', '\\:')
     text = text.replace('$', '\\$')
     return text
+

@@ -29,4 +29,5 @@ st.dataframe(topics_data_table_df,
              use_container_width=True, 
              hide_index=True,
              column_order=c.COLUMN_ORDER.insert(0, 'score'), 
-             column_config=c.COLUMN_CONFIGS) 
+             column_config=c.COLUMN_CONFIGS)
+c.footer() 
