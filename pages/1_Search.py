@@ -81,5 +81,4 @@ if query_display:
                          hide_index=True,
                          column_order=c.COLUMN_ORDER, 
                          column_config=c.COLUMN_CONFIGS)        
-st.query_params.clear()
 c.footer()
