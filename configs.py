@@ -45,19 +45,12 @@ COLUMN_CONFIGS = {
                                               window with complete text.")
     }
 
-def sidebar():
-    st.sidebar.header("Freedom of Information Archive (FOIArchive)") 
-    st.sidebar.markdown('Please [contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search) \
-                 with your questions, comments, and suggestions.')
-    # st.markdown("[History Lab Homepage](http://history-lab.org)")
+def sidebar_menu():
     st.sidebar.divider()
-
-def menu():
-    # Show a navigation menu for authenticated users
     st.sidebar.page_link("Overview.py", label="Overview")
     st.sidebar.page_link("pages/1_Search.py", label="Search")
     st.sidebar.page_link("pages/2_Topics.py", label="Topics")
-    
+ 
 def footer():
     st.divider()
     st.subheader("About")
@@ -70,7 +63,6 @@ def footer():
                          the [National Endowment for the Humanities](https://neh.gov):\
                          Democracy demands wisdom.")
 
-
 def page(page_name, display_menu=True):
     st.set_page_config(page_title=f'{page_name} * HL-FOIA',
                        page_icon=config["favicon"],
@@ -79,7 +71,11 @@ def page(page_name, display_menu=True):
                                    'Report a bug': config["bug_action"],
                                    'About': f"### {config['gui_title']}\n" +
                                             f"{config['about_body']}"})
-    sidebar()
+    # sidebar logic
+    st.sidebar.subheader("Freedom of Information Archive (FOIArchive)")
     if display_menu:
         st.title(f'{page_name}')
-        menu()
+        sidebar_menu()
+    st.sidebar.divider()
+    st.sidebar.markdown('Please [contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search) \
+                 with your questions, comments, and suggestions.')
