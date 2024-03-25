@@ -44,6 +44,7 @@ st.dataframe(cdf,
              use_container_width=True, 
              column_config={
                 "corpus": "Corpus",
+                "title": "Title",
                 "begin_date": "Starts",
                 "end_date": "Ends",
                 "doc_cnt": "Documents",
