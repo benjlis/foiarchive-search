@@ -8,9 +8,9 @@ import db
 The Freedom of Information Archive (FOIArchive) is a collection of documents
 obtained through the Freedom of Information Act (FOIA) and other public 
 records requests. The documents are primarily from the U.S. government but
-include materials from other countries. Its focus is on international 
-relations. The collection is a work in progress, with new documents added as
-they are obtained and processed. 
+include materials from other countries. Its focus is on U.S. foreign policy
+and international relations. The collection is a work in progress, with new 
+documents added as they are obtained and processed. 
 """
 
 # display metrics
@@ -39,8 +39,12 @@ st.bar_chart(data=totals_df, x='Decade', y=metric, use_container_width=True)
 The FOIArchive is composed of numerous corpora.
 """
 cdf = db.load_execute("corpora")
+num_rows = len(cdf)
+# Magic number from streamlit for diplaying entire dataframe without scrollbar
+height = (num_rows + 1) * 35 + 3 
 st.dataframe(cdf, 
              hide_index=True,
+             height=height,
              use_container_width=True, 
              column_config={
                 "corpus": "Corpus",
