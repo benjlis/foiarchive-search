@@ -17,7 +17,7 @@ def display_date(date):
 
 def display_citation(title, corpus_name, doc_id):
     st.sidebar.markdown(f"### Citation:")
-    citation_str = (f"{title}, {corpus_name}, Document ID Number: {doc_id}, "
+    citation_str = (f"{title}, _{corpus_name}_, Document ID Number: {doc_id}, "
                     "accessed on http://www.history-lab.org") 
     st.sidebar.markdown(citation_str)
 
@@ -55,7 +55,7 @@ def display_doc(doc):
     display_date(doc.authored)
     display_source(doc.source)
     display_body(doc)
-    display_citation(doc.title, doc.corpus, doc.doc_id)
+    display_citation(doc.title, doc.corpus_title, doc.doc_id)
     st.sidebar.markdown(f"### Original Classification: {doc.classification}") 
     display_topics(doc.doc_id)
     display_cnt('Pages', doc.pg_cnt)
@@ -63,9 +63,7 @@ def display_doc(doc):
 
 print(f'viewer|{datetime.datetime.now()}|{doc_id}', flush=True)    # logging
 if doc_id:
-    doc_sql = sg.query('doc',
-                       c.config["table_name"], 
-                       f"where doc_id = '{doc_id}'")
+    doc_sql = sg.by_doc_id('docviewer', doc_id)
     doc_df = db.execute(doc_sql)
     if doc_df.empty:
         st.warning(f"Warning: No document with ID {doc_id} found")
