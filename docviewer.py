@@ -22,7 +22,7 @@ def display_citation(title, corpus_name, doc_id):
     st.sidebar.markdown(citation_str)
 
 def display_topics(doc_id):
-    doc_topics_sql = sg.get_topics(doc_id)
+    doc_topics_sql = sg.by_doc_id('doc_topics', doc_id)
     tdf = db.execute(doc_topics_sql)
     if not tdf.empty:
         st.sidebar.markdown("### Topic(s):")
