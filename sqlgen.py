@@ -102,10 +102,6 @@ def aggquery(template_name, table_name, where_clause, agg_column):
     return template.format(table_name=table_name, where_clause=where_clause,
                            agg_column=agg_column)
 
-def get_topics(doc_id):
-    template = load_dynamic("doc_topics")
-    return template.format(doc_id=doc_id) 
-
 def by_doc_id(template_name, doc_id):
     template = load_dynamic(template_name)
     return template.format(doc_id=doc_id)
