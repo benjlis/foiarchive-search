@@ -1,0 +1,4 @@
+select d.authored, d.corpus, c.title corpus_title, d.classification, d.title, 
+       d.doc_id, d.pg_cnt, d.word_cnt, d.source, d.body
+    from docs d join corpora c on d.corpus = c.corpus 
+    where doc_id = '{doc_id}';
