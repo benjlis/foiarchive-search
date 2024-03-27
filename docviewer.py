@@ -16,10 +16,10 @@ def display_date(date):
         st.markdown(f"**{date_str}**") 
 
 def display_citation(title, corpus_name, doc_id):
-    st.sidebar.markdown(f"### Citation:")
     date_str = f"{datetime.date.today().strftime('%b %d, %Y')}"
+    st.sidebar.markdown(f"### Citation:")
     citation_str = (f"{title}, _{corpus_name}_, Document ID Number: {doc_id}, "
-                    f"http://www.history-lab.org [Accessed: {date_str}]") 
+                    f"http://www.history-lab.org [Accessed: {date_str}]")
     st.sidebar.markdown(citation_str)
 
 def display_topics(doc_id):
