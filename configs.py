@@ -63,8 +63,7 @@ def footer():
                          the [National Endowment for the Humanities](https://neh.gov):\
                          Democracy demands wisdom.")
     st.sidebar.divider()
-    st.sidebar.markdown('Please [contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search) \
-                 with your questions, comments, and suggestions.')
+    st.sidebar.markdown(config["sidebar_footer"])
 
 
 def page(page_name, display_menu=True):
