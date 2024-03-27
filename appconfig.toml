@@ -29,6 +29,11 @@ table_name = "foiarchive.docs"
 max_rows = 2000     # results must be <= to display detail records
 #
 docviewer_url="https://foiarchive-docviewer.streamlit.app"
+#
+sidebar_footer="""
+Need assistance or have feedback to share? Don't hesitate to 
+[contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search).
+"""
 # not used currently but should be
 # schema =
 # tsvector_col =
