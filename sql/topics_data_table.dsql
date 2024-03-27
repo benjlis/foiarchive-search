@@ -1,7 +1,7 @@
 select round(score::numeric, 2) score, authored, td.corpus, classification, title, 
        td.doc_id, pg_cnt, word_cnt,
        coalesce(source, 'http://history-lab.org/documents/' || td.doc_id) doc_url
-    from foiarchive.topic_docs td join foiarchive.docs d on td.doc_id = d.doc_id 
+    from topic_docs td join docs d on td.doc_id = d.doc_id 
     {where_clause}
     order by score desc, authored
     limit 36;
