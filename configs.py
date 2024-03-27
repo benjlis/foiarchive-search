@@ -42,7 +42,9 @@ COLUMN_CONFIGS = {
                                         help="Document body in plain text,\
                                               often produced by OCR.\
                                               Double click on cell for\
-                                              window with complete text.")
+                                              window with complete text."),
+    "score": st.column_config.NumberColumn("Score", 
+                                           format="%.2f")
     }
 
 def sidebar_menu():
