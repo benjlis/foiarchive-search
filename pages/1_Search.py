@@ -82,6 +82,6 @@ if query_display:
                          column_order=c.COLUMN_ORDER, 
                          column_config=c.COLUMN_CONFIGS)        
 # Additional text for the sidebar footer
+c.footer()
 st.sidebar.write('You can find the previous version of the History Lab search screen \
                  [here](http://history-lab.org/search).')            
-c.footer()
