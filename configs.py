@@ -46,7 +46,7 @@ COLUMN_CONFIGS = {
     }
 
 def sidebar_menu():
-    st.sidebar.divider()
+
     st.sidebar.page_link("Overview.py", label="Overview")
     st.sidebar.page_link("pages/1_Search.py", label="Search")
     st.sidebar.page_link("pages/2_Topics.py", label="Topics")
