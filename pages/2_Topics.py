@@ -25,6 +25,8 @@ where_clause=sg.where_clause(predicates)
 print(where_clause)
 topics_data_table_sql = sg.query('topics_data_table', c.config["table_name"], where_clause)        
 topics_data_table_df = db.execute(topics_data_table_sql)
+topics_data_table_df['docviewer_url'] = topics_data_table_df['doc_id'].apply(
+                lambda x: f"{c.config['docviewer_url']}?doc_id={x}")   
 st.dataframe(topics_data_table_df,
              use_container_width=True, 
              hide_index=True,
