@@ -62,6 +62,10 @@ def footer():
     description.markdown("FOIArchive Search has been made possible in part by \
                          the [National Endowment for the Humanities](https://neh.gov):\
                          Democracy demands wisdom.")
+    st.sidebar.divider()
+    st.sidebar.markdown('Please [contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search) \
+                 with your questions, comments, and suggestions.')
+
 
 def page(page_name, display_menu=True):
     st.set_page_config(page_title=f'{page_name} * HL-FOIA',
@@ -73,9 +77,7 @@ def page(page_name, display_menu=True):
                                             f"{config['about_body']}"})
     # sidebar logic
     st.sidebar.subheader("Freedom of Information Archive (FOIArchive)")
+    st.sidebar.divider()
     if display_menu:
         st.title(f'{page_name}')
         sidebar_menu()
-    st.sidebar.divider()
-    st.sidebar.markdown('Please [contact us](mailto:info@history-lab.org?subject=FOIArchive%20Search) \
-                 with your questions, comments, and suggestions.')
