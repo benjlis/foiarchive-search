@@ -5,7 +5,7 @@ with open("appconfig.toml", mode="rb") as fp:
     config = tomli.load(fp)
 
 COLUMN_ORDER = ["docviewer_url", "title", "authored", "corpus", "classification", 
-                "doc_id", "pg_cnt", "word_cnt", "body"]
+                "doc_id", "pg_cnt", "word_cnt", "char_cnt", "body"]
 COLUMN_CONFIGS = {
     "doc_id": st.column_config.TextColumn("Document ID", 
                                           help="Unique Document ID", 
@@ -26,7 +26,10 @@ COLUMN_CONFIGS = {
                                             width="small"),
     "word_cnt": st.column_config.NumberColumn("Words",
                                               help="Document word count",
-                                              width="small"),                            
+                                              width="small"),
+    "char_cnt": st.column_config.NumberColumn("Characters",
+                                              help="Document character count",
+                                              width="small"),                           
     "title": st.column_config.TextColumn("Title",
                                          help="Document title",
                                          width="large"),
@@ -39,10 +42,12 @@ COLUMN_CONFIGS = {
                                                 display_text="View",
                                                 width="small"),
     "body": st.column_config.TextColumn("Plain Text",
-                                        help="Document body in plain text,\
-                                              often produced by OCR.\
-                                              Double click on cell for\
-                                              window with complete text."),
+                                        help="The document body in plain text, \
+                                              often produced by OCR. \
+                                              Double-click on a cell to see the \
+                                              first 50,000 characters of text.\
+                                              Click on the View link to see \
+                                              the full text of large documents."),
     "score": st.column_config.NumberColumn("Score", 
                                            format="%.2f")
     }
