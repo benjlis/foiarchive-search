@@ -1,5 +1,4 @@
 select authored, corpus, classification, title, doc_id, pg_cnt, word_cnt, char_cnt,
-       --  coalesce(source, 'http://history-lab.org/documents/' || doc_id) doc_url,
        substr(body, 1, 50000) body
     from {table_name} {where_clause}
 order by authored, corpus, title;
