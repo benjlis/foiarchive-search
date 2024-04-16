@@ -1,0 +1,5 @@
+select body,
+       'https://history.state.gov/historicaldocuments/' || 
+       substring(doc_id from '^(.*)(?=d)') || '/' || 
+       substring(doc_id from '(d[0-9]*)$') source
+   from docs_frus where doc_id = '{doc_id}';
