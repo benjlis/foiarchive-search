@@ -34,9 +34,12 @@ def display_source(source):
         st.markdown(f"[Source Document PDF]({source})")
 
 def display_frus_body(id):
-    qry =(f"select body from docs_frus where doc_id = '{id}'")
+    qry = sg.by_doc_id('docviewer_frus', doc_id)
     results = db.execute(qry)
-    st.markdown(results.iloc[0]['body'], unsafe_allow_html=True)
+    source = results.iloc[0]['source']
+    body = results.iloc[0]['body']
+    st.markdown(f"[US State Department, Office of the Historian]({source})")
+    st.markdown(body, unsafe_allow_html=True)
 
 def display_body(doc):
     if doc.body:
