@@ -11,13 +11,37 @@ classification_lovs = db.get_lov("classifications", "classification")
 corpora_lovs = db.get_lov("corpora", "corpus")
 MIN_AUTHORED = datetime.date(1861, 5, 1)
 MAX_AUTHORED = datetime.date(2013, 7, 8)
+entities_df = db.load_execute('entities')
+
+#
 # display widgets
 search_str = st.text_input(label_visibility="visible",
                            label="Full-Text",
                            placeholder="Enter search terms",
                            help=c.config['search_str_help'],
                            value=st.query_params.get('qry'))
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4, col5 = st.columns(5)
+
+persons = col1.multiselect("Person(s)", 
+                         entities_df[entities_df['entgroup'] == 'PERSON']['entity_dropdown_str'], 
+                         placeholder="Persons Placeholder",
+                         help="Persons Help")
+orgs = col2.multiselect("Organization(s)", 
+                         entities_df[entities_df['entgroup'] == 'ORG']['entity_dropdown_str'], 
+                         placeholder="Organizations Placeholder",
+                         help="Organizations Help")
+locations = col3.multiselect("Location(s)", 
+                         entities_df[entities_df['entgroup'] == 'LOC']['entity_dropdown_str'], 
+                         placeholder="Locations Placeholder",
+                         help="Locations Help")
+govts = col4.multiselect("Government(s)", 
+                         entities_df[entities_df['entgroup'] == 'GOVT']['entity_dropdown_str'], 
+                         placeholder="Governments Placeholder",
+                         help="Governmentss Help")
+others = col5.multiselect("Other(s)", 
+                         entities_df[entities_df['entgroup'] == 'OTHER']['entity_dropdown_str'], 
+                         placeholder="Others Placeholder",
+                         help="Others Help")
 corpora = col1.multiselect("Corpus", 
                            corpora_lovs,
                            placeholder=c.config['corpus_placeholder'])
@@ -28,8 +52,9 @@ classifications = col2.multiselect("Original Classification:",
                                    help=c.config['classification_help'])
 dates = col3.date_input("Date Range", value=[], 
                         min_value=MIN_AUTHORED, max_value=MAX_AUTHORED,
-                        help=c.config['date_help']) 
+                        help=c.config['date_help'])
 null_date = col3.checkbox("Include documents without a date", value=True)     
+
 
 # Dynamic SQL generation
 # build where clause
