@@ -31,4 +31,4 @@ TBA
 TBA
 
 ##### NATO Archives
-TBA
+Through an agreement with the [NATO Archives](https://www.nato.int/archives), the FOIArchive has access to 46,002 documents, comprising 281,963 pages, issued by the NATO International Staff and the Military Authorities between 1949 and 1984.  
