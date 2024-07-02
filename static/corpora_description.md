@@ -28,7 +28,7 @@ The records of [Robert Strange McNamara](https://www.worldbank.org/en/archive/hi
 TBA
 
 ##### UN Archives
-Through an agreement with the [UN Archives](https://archives.un.org), the FOIArchive has access to the papers of United Nations Secretary Generals Kofi Annan and Ban Ki-moon. This corpus consists of 192,541 documents comprising 943,484 pages.
+Through an agreement with the [UN Archives](https://archives.un.org), the History Lab has access to the papers of United Nations Secretary Generals Kofi Annan and Ban Ki-moon and makes them accessible via the FOIArchive. This corpus consists of 192,541 documents comprising 943,484 pages.
 
 ##### NATO Archives
-Through an agreement with the [NATO Archives](https://www.nato.int/archives), the FOIArchive has access to 46,002 documents, comprising 281,963 pages, issued by the NATO International Staff and the Military Authorities between 1949 and 1984.  
+Through an agreement with the [NATO Archives](https://www.nato.int/archives), History Lab has access to documents issued by the NATO International Staff and the Military Authorities between 1949 and 1984 and makes them accessible via the FOIArchive.  This corpus consists of 46,002 documents comprising 281,963 pages.
