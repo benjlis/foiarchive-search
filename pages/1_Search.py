@@ -65,8 +65,15 @@ if query_display:
                                     where_clause, aggdate)
         bar_chart_df = db.execute(bar_chart_sql)
         bar_chart_df.rename(columns={'Date': x_axis_label}, inplace=True)
-        st.bar_chart(data=bar_chart_df, x=x_axis_label, y="Documents", color="Corpus",
-                    use_container_width=True)    
+        st.vega_lite_chart(bar_chart_df,
+                            {"mark": {"type": "bar"},
+                             "encoding": {
+                                "x": {"field": x_axis_label, "type": "ordinal"},
+                                "y": {"field": "Documents", "type": "quantitative"},
+                                "color": {"field": "Corpus",   "type": "nominal",
+                                          "legend": {"orient": "bottom"}}
+                                },
+                            })  
         if metrics['doc_cnt'] > c.config["max_rows"]:
             st.caption(f"**Note:** Queries of {c.config['max_rows']} \
                     documents or less return downloadable metadata and text.")
