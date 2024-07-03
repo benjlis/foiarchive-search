@@ -73,7 +73,7 @@ if query_display:
                                 "color": {"field": "Corpus",   "type": "nominal",
                                           "legend": {"orient": "bottom"}}
                                 },
-                            })  
+                            }, use_container_width=True)  
         if metrics['doc_cnt'] > c.config["max_rows"]:
             st.caption(f"**Note:** Queries of {c.config['max_rows']} \
                     documents or less return downloadable metadata and text.")
