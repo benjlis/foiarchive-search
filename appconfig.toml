@@ -13,9 +13,20 @@ classification_help="""
 Some documents do not include original classification in metadata, so consider
 including the 'unknown' classification when searching by classification.
 """
+entity_placeholder="""
+Optionally restrict to specific entities
+"""
+entity_help="""
+Select documents referencing specific people, organizatons, locations, 
+government and other concepts identifed by named entity recogntion (NER).
+If selecting multiple entities, and you wish to only view documents that 
+contain all entities, please check 'All Entities Appear in Document'.
+NOTE: entities are only available for the UN and FRUS corpora.
+"""
 date_help="""
-Some documents do not include date metadata, so we default to including 
-documents without a date.
+Some documents do not include date metadata. You can expand your search
+to include these documents by checking 'Include 
+documents without a date'.
 """
 help_action = "mailto:info@history-lab.org?subject=History Lab Help Request"
 bug_action= "mailto:info@history-lab.org?subject=History Lab Bug Report"
