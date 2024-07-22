@@ -20,40 +20,24 @@ search_str = st.text_input(label_visibility="visible",
                            placeholder="Enter search terms",
                            help=c.config['search_str_help'],
                            value=st.query_params.get('qry'))
-col1, col2, col3, col4, col5 = st.columns(5)
-
-persons = col1.multiselect("Person(s)", 
-                         entities_df[entities_df['entgroup'] == 'PERSON']['entity_dropdown_str'], 
-                         placeholder="Persons Placeholder",
-                         help="Persons Help")
-orgs = col2.multiselect("Organization(s)", 
-                         entities_df[entities_df['entgroup'] == 'ORG']['entity_dropdown_str'], 
-                         placeholder="Organizations Placeholder",
-                         help="Organizations Help")
-locations = col3.multiselect("Location(s)", 
-                         entities_df[entities_df['entgroup'] == 'LOC']['entity_dropdown_str'], 
-                         placeholder="Locations Placeholder",
-                         help="Locations Help")
-govts = col4.multiselect("Government(s)", 
-                         entities_df[entities_df['entgroup'] == 'GOVT']['entity_dropdown_str'], 
-                         placeholder="Governments Placeholder",
-                         help="Governmentss Help")
-others = col5.multiselect("Other(s)", 
-                         entities_df[entities_df['entgroup'] == 'OTHER']['entity_dropdown_str'], 
-                         placeholder="Others Placeholder",
-                         help="Others Help")
+col1, col2, col3 = st.columns(3)
 corpora = col1.multiselect("Corpus", 
                            corpora_lovs,
-                           placeholder=c.config['corpus_placeholder'])
-classifications = col2.multiselect("Original Classification:", 
+                           placeholder=c.config['corpus_placeholder'])    
+classifications = col2.multiselect("Original Classification", 
                                    classification_lovs,
                                    placeholder=
                                     c.config['classification_placeholder'],
                                    help=c.config['classification_help'])
-dates = col3.date_input("Date Range", value=[], 
+entities = col3.multiselect("Entity",
+                            entities_df['entity_dropdown_str'],
+                            placeholder=c.config['entity_placeholder'],
+                            help=c.config['entity_help'])
+dates = col1.date_input("Date Range", value=[], 
                         min_value=MIN_AUTHORED, max_value=MAX_AUTHORED,
                         help=c.config['date_help'])
-null_date = col3.checkbox("Include documents without a date", value=True)     
+entities = col3.checkbox("All entities appear in document", value=False)
+null_date = col1.checkbox("Include documents without a date", value=False) 
 
 
 # Dynamic SQL generation
