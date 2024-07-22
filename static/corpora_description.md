@@ -25,10 +25,10 @@ The Azeredo da Silveira collection is comprised of the personal papers of the Br
 The records of [Robert Strange McNamara](https://www.worldbank.org/en/archive/history/past-presidents/robert-strange-mcnamara) were offered to us by the [World Bank Group Archives](https://www.worldbank.org/en/archive/home). Robert S. McNamara served as President of the World Bank for 13 years, from 1968 to 1981. Over the course of his presidency, McNamara brought considerable change to all aspects of Bank operations. In addition to the dramatic increase in the volume of loans, he refocused Bank lending to go beyond infrastructure to basic human needs and poverty reduction. The Bank diversified into sectors such as rural development, family planning and pollution control, which were previously overlooked by both the Bank and the development community. The Bank also began to play a more active and, at times, critical role in many developing economies. The records provide a very full account of his long and active presidency. They span the entirety of McNamara’s presidency and consist of speeches, daily schedules, travel briefings, minutes of meetings, correspondence and other records. Read more here.
 
 ##### CIA CREST
-TBA
+The FOIArchive provides access to the CIA records made available via the automatic declassification provisions of Executive Order 13526, which requires declassifying nonexempt historically valuable records 25 years or older. It provides researchers with a superior search interface to the CIA Records Search Tool (CREST) and allows them to query our other corpora in concert with the CREST collection. Our copy of this corpus contains 935,716 documents comprising nearly 12.4 million pages.
 
 ##### UN Archives
-TBA
+Through an agreement with the [UN Archives](https://archives.un.org), the History Lab has access to the papers of United Nations Secretary Generals Kofi Annan and Ban Ki-moon and makes them accessible via the FOIArchive. This corpus consists of 192,541 documents comprising 943,484 pages.
 
 ##### NATO Archives
-TBA
+Through an agreement with the [NATO Archives](https://www.nato.int/archives), History Lab has access to documents issued by the NATO International Staff and the Military Authorities between 1949 and 1984 and makes them accessible via the FOIArchive.  This corpus consists of 46,002 documents comprising 281,963 pages.

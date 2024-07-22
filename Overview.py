@@ -34,7 +34,16 @@ metrics =['Documents', 'Pages', 'Words']
 metric = st.radio('**Metric**', metrics, index=2,
                   horizontal=True,
                   label_visibility='collapsed')
-st.bar_chart(data=totals_df, x='Decade', y=metric, use_container_width=True)
+#st.bar_chart(data=totals_df, x='Decade', y=metric, use_container_width=True)
+st.vega_lite_chart(totals_df,
+                   {"mark": {"type": "bar"},
+                    "encoding": {
+                        "x": {"field": "Decade", "type": "ordinal"},
+                        "y": {"field": metric, "type": "quantitative"}}},
+                   use_container_width=True)  
+# "color": {"field": "Corpus",   "type": "nominal",
+#                                "legend": {"orient": "bottom"}}
+
 """
 The FOIArchive is composed of numerous corpora.
 """

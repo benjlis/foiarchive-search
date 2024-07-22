@@ -78,7 +78,9 @@ def page(page_name, display_menu=True):
                                    'About': f"### {config['gui_title']}\n" +
                                             f"{config['about_body']}"})
     # sidebar logic
-    st.sidebar.header("Freedom of Information Archive (FOIArchive)")
+    st.logo('static/hl-logo-with-text.png', 
+            link='http://history-lab.org')
+    st.sidebar.markdown("#### Freedom of Information Archive (FOIArchive)")
     st.sidebar.divider()
     if display_menu:
         st.title(f'{page_name}')
