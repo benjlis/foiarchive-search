@@ -43,24 +43,40 @@ with st.form("search_form"):
 
 # Dynamic SQL generation
 # build where clause
-predicates = []
-sg.add_predicate(predicates, sg.lov_predicate('corpus', corpora))
-sg.add_predicate(predicates, sg.lov_predicate('classification', 
-                                              classifications))
+sql_predicates = []
+display_predicates = []
+if search_str:
+    sg.add_predicate(sql_predicates, sg.search_predicate('full_text', search_str))
+    sg.add_predicate(display_predicates, f"full_text('{search_str}')")
+corpus_predicate = sg.lov_predicate('corpus', corpora)
+sg.add_predicate(sql_predicates, corpus_predicate)
+sg.add_predicate(display_predicates, corpus_predicate)
+classification_predicate = sg.lov_predicate('classification', classifications)
+sg.add_predicate(sql_predicates, classification_predicate)
+sg.add_predicate(display_predicates, classification_predicate)
 start_date, end_date = sg.convert_daterange(dates, "%Y/%m/%d")
-sg.add_predicate(predicates, 
-                 sg.daterange_predicate('authored',
+date_predicate = sg.daterange_predicate('authored',
                                         start_date, end_date, null_date, 
-                                        MIN_AUTHORED, MAX_AUTHORED))
-sg.add_predicate(predicates, sg.entity_predicate(entities, entities_all))
-sg.add_predicate(predicates, sg.search_predicate('full_text', search_str))  
-where_clause = sg.where_clause(predicates)
+                                        MIN_AUTHORED, MAX_AUTHORED)
+sg.add_predicate(sql_predicates, date_predicate)
+sg.add_predicate(display_predicates, date_predicate)
+if entities:
+    entities_quoted = [s.replace("'", "''") for s in entities]
+    sg.add_predicate(sql_predicates, sg.entity_predicate(entities_quoted, entities_all))
+    if entities_all:
+        entity_function = "all_entities"
+    else:
+        entity_function = "any_entities"
+    sg.add_predicate(display_predicates, f"{entity_function}{entities}")
 
-# display WHERE clause
-query_display = where_clause.replace("full_text @@ websearch_to_tsquery('english',", 
-                                     "search(")
-if query_display:
+  
+where_clause = sg.where_clause(sql_predicates)
+query_display = sg.where_clause(display_predicates)
+
+if where_clause:
     st.caption(":grey[Search Query]")
+    if entities:
+        st.warning("Specifying entities currently limits search to frus and un corpora.")
     st.code(f"{query_display}", language="sql")
     print(f'query|{datetime.datetime.now()}|{query_display}', flush=True)
     # display metrics
