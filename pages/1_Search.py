@@ -37,8 +37,8 @@ with st.form("search_form"):
     dates = col1.date_input("Date Range", value=[], 
                             min_value=MIN_AUTHORED, max_value=MAX_AUTHORED,
                             help=c.config['date_help'])
-    entities = col3.checkbox("All entities appear in document", value=False)
-    null_date = col1.checkbox("Include documents without a date", value=False) 
+    entities_all = col3.checkbox("All entities appear in document", value=True)
+    null_date = col1.checkbox("Include documents without a date", value=True) 
     submitted = st.form_submit_button("Execute Search")
 
 # Dynamic SQL generation
@@ -52,6 +52,7 @@ sg.add_predicate(predicates,
                  sg.daterange_predicate('authored',
                                         start_date, end_date, null_date, 
                                         MIN_AUTHORED, MAX_AUTHORED))
+sg.add_predicate(predicates, sg.entity_predicate(entities, entities_all))
 sg.add_predicate(predicates, sg.search_predicate('full_text', search_str))  
 where_clause = sg.where_clause(predicates)
 
