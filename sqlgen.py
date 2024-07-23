@@ -62,6 +62,17 @@ def daterange_predicate(colname, start_date, end_date, null_date,
             daterange += ")"
     return daterange 
 
+def entity_predicate(entities, all_entities):
+    if not entities:
+        return None
+    quoted_entities = [f"'{entity}'" for entity in entities]
+    entity_subquery = "doc_id in (select doc_id " + \
+                "from entity_docs ed join entities e on ed.entity_id = e.entity_id " + \
+                f"where e.entity in ({', '.join(quoted_entities)}) "
+    if all_entities:
+        entity_subquery += f"group by doc_id having count(*) = {len(entities)}"
+    entity_subquery += ")"
+    return entity_subquery
 
 def add_predicate(predicates, text):
     if text:
