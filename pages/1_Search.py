@@ -14,31 +14,32 @@ MAX_AUTHORED = datetime.date(2013, 7, 8)
 entities_df = db.load_execute('entities')
 
 #
-# display widgets
-search_str = st.text_input(label_visibility="visible",
-                           label="Full-Text",
-                           placeholder="Enter search terms",
-                           help=c.config['search_str_help'],
-                           value=st.query_params.get('qry'))
-col1, col2, col3 = st.columns(3)
-corpora = col1.multiselect("Corpus", 
-                           corpora_lovs,
-                           placeholder=c.config['corpus_placeholder'])    
-classifications = col2.multiselect("Original Classification", 
-                                   classification_lovs,
-                                   placeholder=
-                                    c.config['classification_placeholder'],
-                                   help=c.config['classification_help'])
-entities = col3.multiselect("Entity",
-                            entities_df['entity_dropdown_str'],
-                            placeholder=c.config['entity_placeholder'],
-                            help=c.config['entity_help'])
-dates = col1.date_input("Date Range", value=[], 
-                        min_value=MIN_AUTHORED, max_value=MAX_AUTHORED,
-                        help=c.config['date_help'])
-entities = col3.checkbox("All entities appear in document", value=False)
-null_date = col1.checkbox("Include documents without a date", value=False) 
-
+# Search form
+with st.form("search_form"):
+    search_str = st.text_input(label_visibility="visible",
+                               label="Full-Text",
+                               placeholder="Enter search terms",
+                               help=c.config['search_str_help'],
+                               value=st.query_params.get('qry'))
+    col1, col2, col3 = st.columns(3)
+    corpora = col1.multiselect("Corpus", 
+                               corpora_lovs,
+                               placeholder=c.config['corpus_placeholder'])    
+    classifications = col2.multiselect("Original Classification", 
+                                       classification_lovs,
+                                       placeholder=
+                                        c.config['classification_placeholder'],
+                                       help=c.config['classification_help'])
+    entities = col3.multiselect("Entity",
+                                entities_df['entity_dropdown_str'],
+                                placeholder=c.config['entity_placeholder'],
+                                help=c.config['entity_help'])
+    dates = col1.date_input("Date Range", value=[], 
+                            min_value=MIN_AUTHORED, max_value=MAX_AUTHORED,
+                            help=c.config['date_help'])
+    entities = col3.checkbox("All entities appear in document", value=False)
+    null_date = col1.checkbox("Include documents without a date", value=False) 
+    submitted = st.form_submit_button("Execute Search")
 
 # Dynamic SQL generation
 # build where clause
@@ -58,8 +59,7 @@ where_clause = sg.where_clause(predicates)
 query_display = where_clause.replace("full_text @@ websearch_to_tsquery('english',", 
                                      "search(")
 if query_display:
-    st.divider()
-    st.caption(":grey[Query Criteria]")
+    st.caption(":grey[Search Query]")
     st.code(f"{query_display}", language="sql")
     print(f'query|{datetime.datetime.now()}|{query_display}', flush=True)
     # display metrics
