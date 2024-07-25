@@ -17,12 +17,22 @@ entity_placeholder="""
 Optionally restrict to specific entities
 """
 entity_help="""
-Select documents referencing specific people, organizatons, locations, 
-government and other concepts identifed by named entity recogntion (NER).
-If selecting multiple entities, and you wish to only view documents that 
-contain all entities, please check 'All Entities Appear in Document'.
-NOTE: entities are only available for the UN and FRUS corpora.
-"""
+Selecting values for this field restricts query results to documents 
+referencing specific people, places, organizations, and other entities as 
+identified by [named entity recognition (NER)](https://en.wikipedia.org/wiki/Named-entity_recognition). 
+Checking the associated 'All entities appear in document' checkbox restricts 
+query results to documents containing all selected entities  - unchecking 
+limits query results to documents containing at least one selected entity.  
+
+Entities are currently only available for the UN and FRUS corpora. Therefore, 
+selecting entity values limits query results to these corpora. We are actively 
+working to extend our coverage to additional corpora to enhance the search 
+experience.
+
+Like topic modeling, NER is a probabilistic process; its results don't rival 
+those of a skilled human annotator. If you do not find an entity in the 
+dropdown corresponding to the person, place, or organization you wish to 
+search for, we suggest you enter the name into the full-text field."""
 date_help="""
 Some documents do not include date metadata. You can expand your search
 to include these documents by checking 'Include 
