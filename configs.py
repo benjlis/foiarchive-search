@@ -85,3 +85,12 @@ def page(page_name, display_menu=True):
     if display_menu:
         st.title(f'{page_name}')
         sidebar_menu()
+
+# Returns mailto link for search results email report
+def search_results_email(query_display):
+    address = "info@history-lab.org"
+    subject = "FOIArchive%20Search%20Results%20Report"
+    body = "What%20were%20you%20searching%20for?" + \
+            "%0A%0A%0A%0APlease%20do%20not%20edit:%0A"
+    body = body + query_display.replace(" ", "%20")
+    return  f"mailto:{address}?&subject={subject}&body={body}" 
