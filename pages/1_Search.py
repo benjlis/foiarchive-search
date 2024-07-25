@@ -114,7 +114,8 @@ if where_clause:
                          hide_index=True,
                          column_order=c.COLUMN_ORDER, 
                          column_config=c.COLUMN_CONFIGS)  
-            st.write("Didn't get the expected results? [Let us know.](mailto:info@history-lab.org?subject=FOIArchive%20Search%20Results)")      
+            st.write(f"Didn't get the expected results? \
+                     [Let us know.]({c.search_results_email(query_display)})")      
 # Additional text for the sidebar footer
 c.footer()
 st.sidebar.write('You can find the previous version of the History Lab \
