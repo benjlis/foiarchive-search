@@ -21,7 +21,7 @@ with st.form("search_form"):
                                placeholder="Enter search terms",
                                help=c.config['search_str_help'],
                                value=st.query_params.get('qry'))
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(2)
     corpora = col1.multiselect("Corpus", 
                                corpora_lovs,
                                placeholder=c.config['corpus_placeholder'])    
@@ -30,16 +30,16 @@ with st.form("search_form"):
                                        placeholder=
                                         c.config['classification_placeholder'],
                                        help=c.config['classification_help'])
-    entities = col3.multiselect("Entity",
+    entities = col1.multiselect("People, Places, Organizations...",
                                 entities_df['entity_dropdown_str'],
                                 placeholder=c.config['entity_placeholder'],
                                 help=c.config['entity_help'])
-    dates = col1.date_input("Date Range", value=[], 
+    dates = col2.date_input("Date Range", value=[], 
                             min_value=MIN_AUTHORED, max_value=MAX_AUTHORED,
                             help=c.config['date_help'])
-    entities_all = col3.checkbox("All entities appear in document", value=True)
-    null_date = col1.checkbox("Include documents without a date", value=True) 
-    submitted = st.form_submit_button("Execute Search")
+    entities_all = col1.checkbox("All entities appear in document", value=True)
+    null_date = col2.checkbox("Include documents without a date", value=True) 
+    submitted = st.form_submit_button("Search", type="primary")
 
 # Dynamic SQL generation
 # build where clause
@@ -113,7 +113,8 @@ if where_clause:
                          use_container_width=True, 
                          hide_index=True,
                          column_order=c.COLUMN_ORDER, 
-                         column_config=c.COLUMN_CONFIGS)        
+                         column_config=c.COLUMN_CONFIGS)  
+            st.write("Didn't get the expected results? [Let us know.](mailto:info@history-lab.org?subject=FOIArchive%20Search%20Results)")      
 # Additional text for the sidebar footer
 c.footer()
 st.sidebar.write('You can find the previous version of the History Lab \
