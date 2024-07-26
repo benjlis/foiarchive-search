@@ -61,13 +61,15 @@ date_predicate = sg.daterange_predicate('authored',
 sg.add_predicate(sql_predicates, date_predicate)
 sg.add_predicate(display_predicates, date_predicate)
 if entities:
-    entities_quoted = [s.replace("'", "''") for s in entities]
+    # TBD: code simplification by using entity_id throughout
+    entities_nocnt = [s.rsplit(' (', 1)[0] for s in entities]
+    entities_quoted = [s.replace("'", "''") for s in entities_nocnt]
     sg.add_predicate(sql_predicates, sg.entity_predicate(entities_quoted, entities_all))
     if entities_all:
         entity_function = "all_entities"
     else:
         entity_function = "any_entities"
-    sg.add_predicate(display_predicates, f"{entity_function}{entities}")
+    sg.add_predicate(display_predicates, f"{entity_function}{entities_nocnt}")
 
   
 where_clause = sg.where_clause(sql_predicates)
