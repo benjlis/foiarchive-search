@@ -24,7 +24,7 @@ Checking the associated 'All entities appear in document' checkbox restricts
 query results to documents containing all selected entities  - unchecking 
 limits query results to documents containing at least one selected entity.  
 
-Entities are currently only available for the UN and FRUS corpora. Therefore, 
+Entities are currently only available for the UN, FRUS, and Clinton corpora. Therefore, 
 selecting entity values limits query results to these corpora. We are actively 
 working to extend our coverage to additional corpora to enhance the search 
 experience.
@@ -37,6 +37,9 @@ date_help="""
 Some documents do not include date metadata. You can expand your search
 to include these documents by checking 'Include 
 documents without a date'.
+"""
+entity_warning="""
+Specifying entities currently limits search to FRUS, UN, and Clinton corpora.
 """
 help_action = "mailto:info@history-lab.org?subject=History Lab Help Request"
 bug_action= "mailto:info@history-lab.org?subject=History Lab Bug Report"
