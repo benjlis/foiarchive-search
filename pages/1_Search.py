@@ -78,7 +78,7 @@ query_display = sg.where_clause(display_predicates)
 if where_clause:
     st.caption(":grey[Search Query]")
     if entities:
-        st.warning("Specifying entities currently limits search to frus and un corpora.")
+        st.warning(c.config['entity_warning'])
     st.code(f"{query_display}", language="sql")
     print(f'query|{datetime.datetime.now()}|{query_display}', flush=True)
     # display metrics
