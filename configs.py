@@ -83,6 +83,8 @@ def page(page_name, display_menu=True):
     st.sidebar.markdown("#### Freedom of Information Archive (FOIArchive)")
     st.sidebar.divider()
     if display_menu:
+        if config["info_msg"]:
+            st.info(config["info_msg"]) 
         st.title(f'{page_name}')
         sidebar_menu()
 

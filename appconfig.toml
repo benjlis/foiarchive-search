@@ -3,6 +3,10 @@ favicon = "static/hl-logo-favicon.png"
 search_str_help="""
 Use double quotes for phrases, OR for logical or, and - for logical not.
 """
+info_msg="""
+Please help us improve FOIArchive search by completing our 
+[survey](https://forms.gle/xoUQLQJVXDmqy2bU9).
+"""
 corpus_placeholder="""
 Optionally restrict to specific corpora
 """
