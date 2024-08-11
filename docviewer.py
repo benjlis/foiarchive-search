@@ -25,9 +25,9 @@ def display_citation(title, corpus_name, doc_id):
 def display_entities(doc_id):
     doc_entities_sql = sg.by_doc_id('doc_entities', doc_id)
     edf = db.execute(doc_entities_sql)
-    if not edf.empty:
+    entity_list = edf.iloc[0]['entity_list']
+    if entity_list:
         st.sidebar.markdown("### Entities:")
-        entity_list = edf.iloc[0]['entity_list']
         st.sidebar.write(entity_list)  
 
 def display_topics(doc_id):
