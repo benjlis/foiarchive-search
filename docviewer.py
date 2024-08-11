@@ -22,6 +22,14 @@ def display_citation(title, corpus_name, doc_id):
                     f"http://www.history-lab.org [Accessed: {date_str}]")
     st.sidebar.markdown(citation_str)
 
+def display_entities(doc_id):
+    doc_entities_sql = sg.by_doc_id('doc_entities', doc_id)
+    edf = db.execute(doc_entities_sql)
+    if not edf.empty:
+        st.sidebar.markdown("### Entities:")
+        entity_list = edf.iloc[0]['entity_list']
+        st.sidebar.write(entity_list)  
+
 def display_topics(doc_id):
     doc_topics_sql = sg.by_doc_id('doc_topics', doc_id)
     tdf = db.execute(doc_topics_sql)
@@ -61,6 +69,7 @@ def display_doc(doc):
     display_body(doc)
     display_citation(doc.title, doc.corpus_title, doc.doc_id)
     st.sidebar.markdown(f"### Original Classification: {doc.classification}") 
+    display_entities(doc.doc_id)
     display_topics(doc.doc_id)
     display_cnt('Pages', doc.pg_cnt)
     display_cnt('Words', doc.word_cnt)
