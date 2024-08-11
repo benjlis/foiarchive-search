@@ -1,0 +1,6 @@
+select string_agg(
+    '[' || e.entity || '](https://www.wikidata.org/wiki/' || wikidata_id || ')', 
+    ', ') entity_list
+    from foiarchive.entities e
+        join foiarchive.entity_docs ed on e.entity_id = ed.entity_id
+    where ed.doc_id = '{doc_id}';
