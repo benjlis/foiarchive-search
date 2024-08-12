@@ -28,22 +28,22 @@ Checking the associated 'All entities appear in document' checkbox restricts
 query results to documents containing all selected entities  - unchecking 
 limits query results to documents containing at least one selected entity.  
 
-Entities are currently only available for the UN, FRUS, and Clinton corpora. Therefore, 
-selecting entity values limits query results to these corpora. We are actively 
-working to extend our coverage to additional corpora to enhance the search 
-experience.
+Entities are currently only available for the UN, FRUS, Clinton, and Briefing
+corpora. Therefore, selecting entity values limits query results to these 
+corpora. We are actively working to extend our coverage to additional corpora 
+to enhance your search experience.
 
 Like topic modeling, NER is a probabilistic process; its results don't rival 
 those of a skilled human annotator. If you do not find an entity in the 
 dropdown corresponding to the person, place, or organization you wish to 
 search for, we suggest you enter the name into the full-text field."""
+entity_warning="""
+Specifying entities currently limits search to FRUS, UN, Clinton, and Briefing corpora.
+"""
 date_help="""
 Some documents do not include date metadata. You can expand your search
 to include these documents by checking 'Include 
 documents without a date'.
-"""
-entity_warning="""
-Specifying entities currently limits search to FRUS, UN, and Clinton corpora.
 """
 help_action = "mailto:info@history-lab.org?subject=History Lab Help Request"
 bug_action= "mailto:info@history-lab.org?subject=History Lab Bug Report"
