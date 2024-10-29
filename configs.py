@@ -63,6 +63,7 @@ def footer():
 def page(page_name):
     st.set_page_config(page_title=f'{page_name} * HL-FOIA',
                        page_icon=config["favicon"],
+                       layout='wide'
                        menu_items={'Get Help': config["help_action"],
                                    'Report a bug': config["bug_action"],
                                    'About': f"### {config['gui_title']}\n" +
