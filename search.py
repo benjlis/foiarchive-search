@@ -5,6 +5,8 @@ import datetime
 import sqlgen as sg
 import db
 
+st.header("FOIArchive Search")
+
 # GUI search widgets
 # get values to populate values and ranges
 classification_lovs = db.get_lov("classifications", "classification")
