@@ -64,6 +64,3 @@ st.dataframe(cdf,
                 "pg_cnt": "Pages",
                 "word_cnt": "Words",
                 "topic_cnt": "Topics"})
-with open(c.config["corpora_description"], "r") as f:
-    st.markdown(f.read())
-c.footer()
