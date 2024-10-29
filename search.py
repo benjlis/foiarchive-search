@@ -119,6 +119,4 @@ if where_clause:
             st.write(f"Didn't get the expected results? \
                      [Let us know.]({c.search_results_email(query_display)})")      
 # Additional text for the sidebar footer
-c.footer()
-st.sidebar.write('You can find the previous version of the History Lab \
-                 search screen [here](http://history-lab.org/search).')            
+
