@@ -32,4 +32,3 @@ st.dataframe(topics_data_table_df,
              hide_index=True,
              column_order=['score'] + c.COLUMN_ORDER, 
              column_config=c.COLUMN_CONFIGS)
-c.footer() 
