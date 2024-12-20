@@ -107,8 +107,8 @@ if where_clause:
                                 },
                             }, use_container_width=True)  
         if metrics['doc_cnt'] > c.config["max_rows"]:
-            st.caption(f"**Note:** Queries of {c.config['max_rows']} \
-                    documents or less return downloadable metadata and text.")
+            st.markdown(f"##### Limit results to < {c.config['max_rows']} \
+                        for downloadable metadata and text.")
         else:
             data_table_sql = sg.query('data_table', c.config["table_name"], 
                                     where_clause)        
