@@ -8,6 +8,8 @@ import db
 if c.config["info_msg"]:
     st.info(c.config["info_msg"]) 
 st.header("FOIArchive Search")
+st.markdown(f"More specific queries returning < {c.config['max_rows']} \
+             documents run faster and return metadata and text.")
 
 # GUI search widgets
 # get values to populate values and ranges
