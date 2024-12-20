@@ -7,7 +7,7 @@ import sqlgen as sg
 """
 Query the FOIArchive via topics derived by topic modeling. You can find
 more information about topic modeling 
-[here](http://history-lab.org/documentation).
+[here](https://lab.history.columbia.edu/content/documentation).
 """
 cdf = db.load_execute("corpora")
 tdf = db.load_execute("topics")
