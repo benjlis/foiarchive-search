@@ -5,6 +5,8 @@ import datetime
 import sqlgen as sg
 import db
 
+if c.config["info_msg"]:
+    st.info(c.config["info_msg"]) 
 st.header("FOIArchive Search")
 
 # GUI search widgets
@@ -120,5 +122,5 @@ if where_clause:
                          column_config=c.COLUMN_CONFIGS)  
             st.write(f"Didn't get the expected results? \
                      [Let us know.]({c.search_results_email(query_display)})")      
-# Additional text for the sidebar footer
+
 
