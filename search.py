@@ -8,8 +8,13 @@ import db
 if c.config["info_msg"]:
     st.info(c.config["info_msg"]) 
 st.header("FOIArchive Search")
-st.markdown(f"More specific queries returning < {c.config['max_rows']} \
-             documents run faster and return metadata and text.")
+f"""
+First time here? Learn more about our collections 
+[here]({c.config['collections_pg']}) and watch this
+brief [screencast]({c.config['intro_screencast']}) to see how to use the 
+search interface. More specific queries returning < {c.config['max_rows']}
+documents run faster and return metadata and text.
+"""
 
 # GUI search widgets
 # get values to populate values and ranges
@@ -125,4 +130,4 @@ if where_clause:
             st.write(f"Didn't get the expected results? \
                      [Let us know.]({c.search_results_email(query_display)})")      
 
-
+st.markdown(c.config["email_support"])
